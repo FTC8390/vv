@@ -13,7 +13,7 @@ public class DriveTrain {
     final int yellow = 0;
     final int red = 1;
     final int green = 2;
-    final int blue = 3;
+    final int blue = 3 ;
 
     final int by = 0;
     final int yr = 1;
