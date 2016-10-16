@@ -32,7 +32,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package ftc8390.vv;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -57,10 +56,6 @@ public class Teleop extends OpMode
 {
     RobotVV angus;
 
-    public Teleop()
-    {
-        angus = new RobotVV();
-    }
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -71,6 +66,8 @@ public class Teleop extends OpMode
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
+
+        angus = new RobotVV();
         angus.init(hardwareMap);
 
     }

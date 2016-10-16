@@ -7,10 +7,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  */
 public class RobotVV {
     DriveTrain driveTrain;
+
     public RobotVV ()
     {
         driveTrain = new DriveTrain();
     }
+
     public void init (HardwareMap hardwareMap)
     {
         driveTrain.init(hardwareMap);
