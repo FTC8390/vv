@@ -10,20 +10,21 @@ import com.qualcomm.robotcore.util.Range;
 public class DriveTrain {
     DcMotor[] motor;
     DcMotor[] motorMap;
+
     final int yellow = 0;
     final int red = 1;
     final int green = 2;
     final int blue = 3 ;
 
-    final int by = 0;
-    final int yr = 1;
-    final int rg = 2;
-    final int gb = 3;
+    final int blueYellow = 0;
+    final int yellowRed = 1;
+    final int redGreen = 2;
+    final int greenBlue = 3;
 
-    final int FL = 0;
-    final int FR = 1;
-    final int BL = 2;
-    final int BR = 3;
+    final int frontLeft = 0;
+    final int frontRight = 1;
+    final int backRight = 2;
+    final int backLeft = 3;
 
     int front;
 
@@ -33,18 +34,19 @@ public class DriveTrain {
     }
 
     public void init(HardwareMap hardwareMap) {
-        motor[by] = hardwareMap.dcMotor.get("by");
-        motor[yr] = hardwareMap.dcMotor.get("yr");
-        motor[rg] = hardwareMap.dcMotor.get("rg");
-        motor[gb] = hardwareMap.dcMotor.get("gb");
+        motor[blueYellow] = hardwareMap.dcMotor.get("by");
+        motor[yellowRed] = hardwareMap.dcMotor.get("yr");
+        motor[redGreen] = hardwareMap.dcMotor.get("rg");
+        motor[greenBlue] = hardwareMap.dcMotor.get("gb");
+
         setFront(yellow);
     }
 
     public void drive(double x, double y, double turn) {
-        motorMap[FL].setPower(Range.clip(x + y + turn, -1, 1));
-        motorMap[FR].setPower(Range.clip(x - y + turn, -1, 1));
-        motorMap[BR].setPower(Range.clip(-x - y + turn, -1, 1));
-        motorMap[BL].setPower(Range.clip(-x + y + turn, -1, 1));
+        motorMap[frontLeft].setPower(Range.clip(x + y + turn, -1, 1));
+        motorMap[frontRight].setPower(Range.clip(x - y + turn, -1, 1));
+        motorMap[backRight].setPower(Range.clip(-x - y + turn, -1, 1));
+        motorMap[backLeft].setPower(Range.clip(-x + y + turn, -1, 1));
     }
 
     //changes the front to the selected side by button on gamepad
