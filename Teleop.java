@@ -93,7 +93,7 @@ public class Teleop extends OpMode
     @Override
     public void loop() {
         telemetry.addData("Status", "Running: " + runtime.toString());
-        angus.driveTrain.drive(gamepad1.right_stick_x, gamepad1.right_stick_y,gamepad1.left_stick_x);
+        angus.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y,gamepad1.left_stick_x);
 
     }
 
