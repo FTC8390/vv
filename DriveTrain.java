@@ -4,56 +4,58 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
+import static ftc8390.vv.DriveTrain.Color.YELLOW;
+import static ftc8390.vv.DriveTrain.CornerColor.BLUEYELLOW;
+import static ftc8390.vv.DriveTrain.CornerColor.GREENBLUE;
+import static ftc8390.vv.DriveTrain.CornerColor.REDGREEN;
+import static ftc8390.vv.DriveTrain.CornerColor.YELLOWRED;
+import static ftc8390.vv.DriveTrain.CornerLocation.BACKLEFT;
+import static ftc8390.vv.DriveTrain.CornerLocation.BACKRIGHT;
+import static ftc8390.vv.DriveTrain.CornerLocation.FRONTLEFT;
+import static ftc8390.vv.DriveTrain.CornerLocation.FRONTRIGHT;
+
 /**
  * Created by jmgu3 on 10/12/2016.
  */
 public class DriveTrain {
-    DcMotor[] motor;
-    DcMotor[] motorMap;
 
-    final int yellow = 0;
-    final int red = 1;
-    final int green = 2;
-    final int blue = 3 ;
+    public enum Color {YELLOW, RED, GREEN, BLUE}
 
-    final int blueYellow = 0;
-    final int yellowRed = 1;
-    final int redGreen = 2;
-    final int greenBlue = 3;
+    public enum CornerColor {BLUEYELLOW, YELLOWRED, REDGREEN, GREENBLUE}
 
-    final int frontLeft = 0;
-    final int frontRight = 1;
-    final int backRight = 2;
-    final int backLeft = 3;
+    public enum CornerLocation {FRONTLEFT, FRONTRIGHT, BACKRIGHT, BACKLEFT}
 
-    int front;
+    private Color frontColor;
+
+    public DcMotor[] motorColor;
+    public DcMotor[] motorLocation;
 
     public DriveTrain() {
-        motor = new DcMotor[4];
-        motorMap = new DcMotor[4];
+        motorColor = new DcMotor[4];
+        motorLocation = new DcMotor[4];
     }
 
     public void init(HardwareMap hardwareMap) {
-        motor[blueYellow] = hardwareMap.dcMotor.get("by");
-        motor[yellowRed] = hardwareMap.dcMotor.get("yr");
-        motor[redGreen] = hardwareMap.dcMotor.get("rg");
-        motor[greenBlue] = hardwareMap.dcMotor.get("gb");
+        motorColor[BLUEYELLOW.ordinal()] = hardwareMap.dcMotor.get("by");
+        motorColor[YELLOWRED.ordinal()] = hardwareMap.dcMotor.get("yr");
+        motorColor[REDGREEN.ordinal()] = hardwareMap.dcMotor.get("rg");
+        motorColor[GREENBLUE.ordinal()] = hardwareMap.dcMotor.get("gb");
 
-        setFront(yellow);
+        setFront(YELLOW);
     }
 
     public void drive(double x, double y, double turn) {
-        motorMap[frontLeft].setPower(Range.clip(x + y + turn, -1, 1));
-        motorMap[frontRight].setPower(Range.clip(x - y + turn, -1, 1));
-        motorMap[backRight].setPower(Range.clip(-x - y + turn, -1, 1));
-        motorMap[backLeft].setPower(Range.clip(-x + y + turn, -1, 1));
+        motorLocation[FRONTLEFT.ordinal()].setPower(Range.clip(x + y + turn, -1, 1));
+        motorLocation[FRONTRIGHT.ordinal()].setPower(Range.clip(x - y + turn, -1, 1));
+        motorLocation[BACKRIGHT.ordinal()].setPower(Range.clip(-x - y + turn, -1, 1));
+        motorLocation[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
     }
 
     //changes the front to the selected side by button on gamepad
-    public void setFront(int frontNum) {
-        front = frontNum;
+    public void setFront(Color color) {
+        frontColor = color;
         for (int i = 0; i < 4; i++)
-            motorMap[i] = motor[(i + front) % 4];
+            motorLocation[i] = motorColor[(i + frontColor.ordinal()) % 4];
     }
 
 }
