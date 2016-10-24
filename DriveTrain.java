@@ -27,35 +27,39 @@ public class DriveTrain {
 
     private Color frontColor;
 
-    public DcMotor[] motorColor;
-    public DcMotor[] motorLocation;
+    public DcMotor[] motorByColor;
+    public DcMotor[] motorByDirection;
 
     public DriveTrain() {
-        motorColor = new DcMotor[4];
-        motorLocation = new DcMotor[4];
+        motorByColor = new DcMotor[4];
+        motorByDirection = new DcMotor[4];
     }
 
     public void init(HardwareMap hardwareMap) {
-        motorColor[BLUEYELLOW.ordinal()] = hardwareMap.dcMotor.get("by");
-        motorColor[YELLOWRED.ordinal()] = hardwareMap.dcMotor.get("yr");
-        motorColor[REDGREEN.ordinal()] = hardwareMap.dcMotor.get("rg");
-        motorColor[GREENBLUE.ordinal()] = hardwareMap.dcMotor.get("gb");
+        motorByColor[BLUEYELLOW.ordinal()] = hardwareMap.dcMotor.get("by");
+        motorByColor[YELLOWRED.ordinal()] = hardwareMap.dcMotor.get("yr");
+        motorByColor[REDGREEN.ordinal()] = hardwareMap.dcMotor.get("rg");
+        motorByColor[GREENBLUE.ordinal()] = hardwareMap.dcMotor.get("gb");
 
         setFront(YELLOW);
     }
 
     public void drive(double x, double y, double turn) {
-        motorLocation[FRONTLEFT.ordinal()].setPower(Range.clip(x + y + turn, -1, 1));
-        motorLocation[FRONTRIGHT.ordinal()].setPower(Range.clip(x - y + turn, -1, 1));
-        motorLocation[BACKRIGHT.ordinal()].setPower(Range.clip(-x - y + turn, -1, 1));
-        motorLocation[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
+        motorByDirection[FRONTLEFT.ordinal()].setPower(Range.clip(x + y + turn, -1, 1));
+        motorByDirection[FRONTRIGHT.ordinal()].setPower(Range.clip(x - y + turn, -1, 1));
+        motorByDirection[BACKRIGHT.ordinal()].setPower(Range.clip(-x - y + turn, -1, 1));
+        motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
     }
 
     //changes the front to the selected side by button on gamepad
     public void setFront(Color color) {
         frontColor = color;
         for (int i = 0; i < 4; i++)
-            motorLocation[i] = motorColor[(i + frontColor.ordinal()) % 4];
+            motorByDirection[i] = motorByColor[(i + frontColor.ordinal()) % 4];
+    }
+
+    public Color getFront() {
+        return frontColor;
     }
 
 }
