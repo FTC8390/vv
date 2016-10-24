@@ -9,10 +9,10 @@ import static ftc8390.vv.DriveTrain.CornerColor.BLUEYELLOW;
 import static ftc8390.vv.DriveTrain.CornerColor.GREENBLUE;
 import static ftc8390.vv.DriveTrain.CornerColor.REDGREEN;
 import static ftc8390.vv.DriveTrain.CornerColor.YELLOWRED;
-import static ftc8390.vv.DriveTrain.CornerLocation.BACKLEFT;
-import static ftc8390.vv.DriveTrain.CornerLocation.BACKRIGHT;
-import static ftc8390.vv.DriveTrain.CornerLocation.FRONTLEFT;
-import static ftc8390.vv.DriveTrain.CornerLocation.FRONTRIGHT;
+import static ftc8390.vv.DriveTrain.CornerDirection.BACKLEFT;
+import static ftc8390.vv.DriveTrain.CornerDirection.BACKRIGHT;
+import static ftc8390.vv.DriveTrain.CornerDirection.FRONTLEFT;
+import static ftc8390.vv.DriveTrain.CornerDirection.FRONTRIGHT;
 
 /**
  * Created by jmgu3 on 10/12/2016.
@@ -23,7 +23,7 @@ public class DriveTrain {
 
     public enum CornerColor {BLUEYELLOW, YELLOWRED, REDGREEN, GREENBLUE}
 
-    public enum CornerLocation {FRONTLEFT, FRONTRIGHT, BACKRIGHT, BACKLEFT}
+    public enum CornerDirection {FRONTLEFT, FRONTRIGHT, BACKRIGHT, BACKLEFT}
 
     private Color frontColor;
 
