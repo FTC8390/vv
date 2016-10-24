@@ -4,11 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import static ftc8390.vv.DriveTrain.Color.BLUE;
-import static ftc8390.vv.DriveTrain.Color.GREEN;
-import static ftc8390.vv.DriveTrain.Color.RED;
-import static ftc8390.vv.DriveTrain.Color.YELLOW;
-
 @TeleOp(name = "Teleop")  // @Autonomous(...) is the other common choice
 //@Disabled
 public class Teleop extends OpMode {
@@ -41,13 +36,13 @@ public class Teleop extends OpMode {
         angus.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
 
         if (gamepad1.a)
-            angus.driveTrain.setFront(GREEN);
+            angus.driveTrain.setFront(DriveTrain.Color.GREEN);
         if (gamepad1.y)
-            angus.driveTrain.setFront(YELLOW);
+            angus.driveTrain.setFront(DriveTrain.Color.YELLOW);
         if (gamepad1.b)
-            angus.driveTrain.setFront(RED);
+            angus.driveTrain.setFront(DriveTrain.Color.RED);
         if (gamepad1.x)
-            angus.driveTrain.setFront(BLUE);
+            angus.driveTrain.setFront(DriveTrain.Color.BLUE);
 
         telemetry.addData("Status", "Running: " + runtime.toString());
     }
