@@ -32,17 +32,16 @@ public class Teleop extends OpMode {
 
     @Override
     public void loop() {
-
         angus.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
 
         if (gamepad1.a)
-            angus.driveTrain.setFront(DriveTrain.Color.GREEN);
+            angus.driveTrain.setBack(DriveTrain.Color.GREEN);
         if (gamepad1.y)
-            angus.driveTrain.setFront(DriveTrain.Color.YELLOW);
+            angus.driveTrain.setBack(DriveTrain.Color.YELLOW);
         if (gamepad1.b)
-            angus.driveTrain.setFront(DriveTrain.Color.RED);
+            angus.driveTrain.setBack(DriveTrain.Color.RED);
         if (gamepad1.x)
-            angus.driveTrain.setFront(DriveTrain.Color.BLUE);
+            angus.driveTrain.setBack(DriveTrain.Color.BLUE);
 
         telemetry.addData("Status", "Running: " + runtime.toString());
     }

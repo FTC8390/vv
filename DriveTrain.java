@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
+import static ftc8390.vv.DriveTrain.Color.BLUE;
+import static ftc8390.vv.DriveTrain.Color.GREEN;
+import static ftc8390.vv.DriveTrain.Color.RED;
 import static ftc8390.vv.DriveTrain.Color.YELLOW;
 import static ftc8390.vv.DriveTrain.CornerColor.BLUEYELLOW;
 import static ftc8390.vv.DriveTrain.CornerColor.GREENBLUE;
@@ -56,6 +59,22 @@ public class DriveTrain {
         frontColor = color;
         for (int i = 0; i < 4; i++)
             motorByDirection[i] = motorByColor[(i + frontColor.ordinal()) % 4];
+    }
+    public void setBack(Color color) {
+        switch (color)
+        {
+            case YELLOW:
+                setFront(GREEN);
+                break;
+            case RED:
+                setFront(BLUE);
+                break;
+            case GREEN:
+                setFront(YELLOW);
+                break;
+            case BLUE:
+                setFront(RED);
+        }
     }
 
     public Color getFront() {
