@@ -54,12 +54,13 @@ public class DriveTrain {
         motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
     }
 
-    //changes the front to the selected side by button on gamepad
+    //changes the front to the selected color and update motors
     public void setFront(Color color) {
         frontColor = color;
         for (int i = 0; i < 4; i++)
             motorByDirection[i] = motorByColor[(i + frontColor.ordinal()) % 4];
     }
+
     public void setBack(Color color) {
         switch (color)
         {
