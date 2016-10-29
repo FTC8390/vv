@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "Teleop")  // @Autonomous(...) is the other common choice
 //@Disabled
 public class Teleop extends OpMode {
-    RobotVV angus;
+    RobotVV mooMoo;
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
@@ -16,8 +16,8 @@ public class Teleop extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-        angus = new RobotVV();
-        angus.init(hardwareMap);
+        mooMoo = new RobotVV();
+        mooMoo.init(hardwareMap);
 
     }
 
@@ -32,16 +32,16 @@ public class Teleop extends OpMode {
 
     @Override
     public void loop() {
-        angus.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
+        mooMoo.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
 
         if (gamepad1.a)
-            angus.driveTrain.setBack(DriveTrain.Color.GREEN);
+            mooMoo.driveTrain.setBack(DriveTrain.Color.GREEN);
         if (gamepad1.y)
-            angus.driveTrain.setBack(DriveTrain.Color.YELLOW);
+            mooMoo.driveTrain.setBack(DriveTrain.Color.YELLOW);
         if (gamepad1.b)
-            angus.driveTrain.setBack(DriveTrain.Color.RED);
+            mooMoo.driveTrain.setBack(DriveTrain.Color.RED);
         if (gamepad1.x)
-            angus.driveTrain.setBack(DriveTrain.Color.BLUE);
+            mooMoo.driveTrain.setBack(DriveTrain.Color.BLUE);
 
         telemetry.addData("Status", "Running: " + runtime.toString());
     }
