@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Shooter {
 
     public void init(HardwareMap hardwareMap) {
-
+    // MAKE SURE TO PUT SHOOTER MOTORS INTO FLOAT MODE SO THEY DON'T BREAK!!!
     }
 
 }
