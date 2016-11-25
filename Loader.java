@@ -12,5 +12,10 @@ public class Loader {
     public void init(HardwareMap hardwareMap) {
         servo = hardwareMap.servo.get("servo");
     }
-
+    public void raise(){
+        servo.setPosition(.25);
+    }
+    public void lower(){
+        servo.setPosition(.75);
+    }
 }
