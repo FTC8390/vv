@@ -63,6 +63,35 @@ public class Teleop extends OpMode {
         else
             mooMoo.sweeper.stop();
 
+        //Loader raise and lower
+        if (gamepad2.right_bumper)
+            mooMoo.loader.raise();
+        else
+            mooMoo.loader.lower();
+
+        //Beacon pusher in and out
+        if (gamepad1.left_bumper) {
+            mooMoo.beaconPusher.leftOut();
+            mooMoo.beaconPusher.rightOut();
+        }
+        if (gamepad1.left_trigger>0.5){
+            mooMoo.beaconPusher.leftIn();
+            mooMoo.beaconPusher.rightIn();
+        }
+        if (gamepad2.y) {
+            mooMoo.beaconPusher.leftOut();
+            mooMoo.beaconPusher.rightOut();
+        }
+        if (gamepad2.a){
+            mooMoo.beaconPusher.leftIn();
+            mooMoo.beaconPusher.rightIn();
+        }
+        if (gamepad2.x)
+            mooMoo.beaconPusher.leftOut();
+        if (gamepad2.b)
+            mooMoo.beaconPusher.rightOut();
+
+
         telemetry.addData("Status", "Running: " + runtime.toString());
     }
 
