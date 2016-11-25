@@ -28,12 +28,14 @@ public class Teleop extends OpMode {
     @Override
     public void start() {
         runtime.reset();
+        mooMoo.shooter.turnOn();
     }
 
     @Override
     public void loop() {
         mooMoo.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
 
+        //Set drive train direction
         if (gamepad1.a)
             mooMoo.driveTrain.setBack(DriveTrain.Color.GREEN);
         if (gamepad1.y)
@@ -43,11 +45,30 @@ public class Teleop extends OpMode {
         if (gamepad1.x)
             mooMoo.driveTrain.setBack(DriveTrain.Color.BLUE);
 
+        //Shooter on and off
+        if (gamepad1.dpad_up)
+            mooMoo.shooter.turnOn();
+        if (gamepad1.dpad_down)
+            mooMoo.shooter.turnOff();
+        if (gamepad2.dpad_up)
+            mooMoo.shooter.turnOn();
+        if (gamepad2.dpad_down)
+            mooMoo.shooter.turnOff();
+
+        //Sweeper on and off
+        if (gamepad2.right_stick_y<-.5)
+            mooMoo.sweeper.sweepOut();
+        else if (gamepad2.right_stick_y>0.5)
+            mooMoo.sweeper.sweepIn();
+        else
+            mooMoo.sweeper.stop();
+
         telemetry.addData("Status", "Running: " + runtime.toString());
     }
 
     @Override
     public void stop() {
+        mooMoo.shooter.turnOff();
     }
 
 }
