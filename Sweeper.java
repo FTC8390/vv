@@ -8,26 +8,26 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
  */
 public class Sweeper {
 
-    public DcMotor sweeper;
+    public DcMotor motor;
 
 
     public void init(HardwareMap hardwareMap) {
-        sweeper = hardwareMap.dcMotor.get("sweeper");
+        motor = hardwareMap.dcMotor.get("sweeper");
     }
 
 
     public void sweepIn()
     {
-        sweeper.setPower(1);
+        motor.setPower(1);
     }
 
     public void sweepOut()
     {
-        sweeper.setPower(-1);
+        motor.setPower(-1);
     }
 
     public void stop()
     {
-        sweeper.setPower(0);
+        motor.setPower(0);
     }
 }
