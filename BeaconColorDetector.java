@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class BeaconColorDetector {
 
     public void init(HardwareMap hardwareMap) {
-
     }
 
     static public int red(int pixel) {
@@ -23,21 +22,6 @@ public class BeaconColorDetector {
 
     static public int blue(int pixel) {
         return pixel & 0xff;
-    }
-
-    static public int gray(int pixel) {
-        return (red(pixel) + green(pixel) + blue(pixel));
-    }
-
-    static public int highestColor(int red, int green, int blue) {
-        int[] color = {red, green, blue};
-        int value = 0;
-        for (int i = 1; i < 3; i++) {
-            if (color[value] < color[i]) {
-                value = i;
-            }
-        }
-        return value;
     }
 
     public boolean blueIsOnLeft(Bitmap rgbImage)
