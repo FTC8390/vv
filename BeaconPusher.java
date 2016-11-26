@@ -7,22 +7,27 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by jmgu3 on 11/7/2016.
  */
 public class BeaconPusher {
-public Servo  rightPusher;
-    public Servo  leftPusher;
+    public Servo rightServo;
+    public Servo leftServo;
+
     public void init(HardwareMap hardwareMap) {
-        rightPusher = hardwareMap.servo.get("rightPusher");
-        leftPusher = hardwareMap.servo.get("leftPusher");
+        rightServo = hardwareMap.servo.get("rightPusher");
+        leftServo = hardwareMap.servo.get("leftPusher");
     }
-    public void rightIn(){
-        rightPusher.setPosition(.5);
+
+    public void rightIn() {
+        rightServo.setPosition(.5);
     }
-    public void rightOut(){
-        rightPusher.setPosition(.5);
+
+    public void rightOut() {
+        rightServo.setPosition(.5);
     }
-    public void leftIn(){
-        leftPusher.setPosition(.5);
+
+    public void leftIn() {
+        leftServo.setPosition(.5);
     }
-    public void leftOut(){
-        leftPusher.setPosition(.5);
+
+    public void leftOut() {
+        leftServo.setPosition(.5);
     }
 }
