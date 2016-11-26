@@ -32,11 +32,15 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package ftc8390.vv;
 
+import android.graphics.Bitmap;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import for_camera_opmodes.LinearOpModeCamera;
 
 /**
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
@@ -53,10 +57,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="AutonBeacon")  // @Autonomous(...) is the other common choice
 @Disabled
-public class AutonBeacon extends LinearOpMode {
+public class AutonBeacon extends LinearOpModeCamera {
 
     RobotVV mooMoo;
     boolean allianceIsRed = true;
+    boolean cameraIsWorking = false;
+    int ds2 = 2;
     private ElapsedTime runtime = new ElapsedTime();
     // DcMotor leftMotor = null;
     // DcMotor rightMotor = null;
@@ -70,7 +76,32 @@ public class AutonBeacon extends LinearOpMode {
         autonFile = new AutonFileHandler();
         autonFile.readDataFromFile(hardwareMap.appContext);
 
-        waitForStart();
+        if (isCameraAvailable()) {
+
+            setCameraDownsampling(8);
+            // parameter determines how downsampled you want your images
+            // 8, 4, 2, or 1.
+            // higher number is more downsampled, so less resolution but faster
+            // 1 is original resolution, which is detailed but slow
+            // must be called before super.init sets up the camera
+            BeaconColorDetector BCD = new BeaconColorDetector();
+            BCD.init(hardwareMap);
+            telemetry.addLine("Wait for camera to finish initializing!");
+            telemetry.update();
+            startCamera();  // can take a while.
+            // best started before waitForStart
+            telemetry.addLine("Camera ready!");
+            telemetry.update();
+            cameraIsWorking = true;
+        }else {
+            cameraIsWorking = false;
+            telemetry.addLine("CAMERA NOT WORKING!!!!!!!!!!!!!!!!!!!");
+            telemetry.update();
+        }
+
+
+            waitForStart();
+        mooMoo.shooter.turnOn();
         double xDirection;
         if(allianceIsRed)
             xDirection = 1;
@@ -79,8 +110,86 @@ public class AutonBeacon extends LinearOpMode {
         //Move diagnal to first beacon
         mooMoo.driveTrain.drive( xDirection * autonFile.driveSpeed , autonFile.driveSpeed , 0 );
         //wait until detected line
-        while(  )
+        while( !mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive() )
             sleep(10);
 
+        mooMoo.driveTrain.drive(0,0,0);
+
+        mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
+        sleep(500);
+        mooMoo.driveTrain.drive( 0 , -autonFile.driveSpeed , 0 );
+        sleep(250);
+        mooMoo.driveTrain.drive(0,0,0);
+
+        if(cameraIsWorking)
+        {
+            if (imageReady()) { // only do this if an image has been returned from the camera
+                Bitmap rgbImage;
+                rgbImage = convertYuvImageToRgb(yuvImage, width, height, ds2);
+                boolean blueIsOnLeft = mooMoo.beaconColorDetector.blueIsOnLeft(rgbImage);
+                if ((blueIsOnLeft & !allianceIsRed) || (!blueIsOnLeft & allianceIsRed) ) {
+                    mooMoo.beaconPusher.leftOut();
+                }else{
+                    mooMoo.beaconPusher.rightOut();
+                }
+                sleep (250);
+            }
+        }
+
+        mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
+        sleep(250);
+        mooMoo.driveTrain.drive(0,0,0);
+
+
+        /*
+        mooMoo.loader.raise();
+        sleep(500);
+        mooMoo.loader.lower();
+        sleep(1000);
+        mooMoo.loader.raise();
+        sleep(500);
+        mooMoo.loader.lower();
+
+        mooMoo.beaconPusher.rightIn();
+        mooMoo.beaconPusher.leftIn();
+
+        mooMoo.shooter.turnOff();
+
+        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, .25 * autonFile.driveSpeed , 0 );
+
+        while(!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+        {
+            sleep(10);
+        }
+
+        //mooMoo.driveTrain.drive( 0 , autonFile.driveSpeed , 0 );
+       // sleep(250);
+        mooMoo.driveTrain.drive( 0, -autonFile.driveSpeed , 0);
+        sleep(250);
+
+        if(cameraIsWorking)
+        {
+            if (imageReady()) { // only do this if an image has been returned from the camera
+                Bitmap rgbImage;
+                rgbImage = convertYuvImageToRgb(yuvImage, width, height, ds2);
+                boolean blueIsOnLeft = mooMoo.beaconColorDetector.blueIsOnLeft(rgbImage);
+                if ((blueIsOnLeft & !allianceIsRed) || (!blueIsOnLeft & allianceIsRed) ) {
+                    mooMoo.beaconPusher.leftOut();
+                }else{
+                    mooMoo.beaconPusher.rightOut();
+                }
+                sleep (250);
+            }
+        }
+
+        mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
+        sleep(250);
+        mooMoo.driveTrain.drive(0,0,0);
+
+        sleep(1000);
+
+        mooMoo.beaconPusher.rightIn();
+        mooMoo.beaconPusher.leftIn();
+         */
     }
 }

@@ -82,6 +82,7 @@ public class ServoTest extends OpMode {
          telemetry.addData("Right Beacon Pusher Position: " + mooMoo.beaconPusher.rightPusher.getPosition() ,  " Right Trigger is Up, Bumper is Down ");
          telemetry.addData("Left Beacon Pusher Position: " + mooMoo.beaconPusher.leftPusher.getPosition() ,  " Left Trigger is Up, Bumper is Down ");
          telemetry.addData("Loader Position: " + mooMoo.loader.servo.getPosition() ,  " Dpad_Up is Up, Dpad_Down is Down ");
+         telemetry.addData("Color Value: ", mooMoo.lineDetector.middle.getLightDetected());
      }
 
 }

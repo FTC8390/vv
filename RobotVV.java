@@ -12,6 +12,7 @@ public class RobotVV {
     Sweeper sweeper;
     BeaconPusher beaconPusher;
     BeaconColorDetector beaconColorDetector;
+    LineDetector lineDetector;
 
     public RobotVV ()
     {
@@ -21,6 +22,7 @@ public class RobotVV {
         beaconPusher = new BeaconPusher();
         loader = new Loader();
         sweeper = new Sweeper();
+        lineDetector = new LineDetector();
     }
 
     public void init (HardwareMap hardwareMap)
@@ -31,5 +33,6 @@ public class RobotVV {
         beaconPusher.init(hardwareMap);
         loader.init(hardwareMap);
         sweeper.init(hardwareMap);
+        lineDetector.init(hardwareMap);
     }
 }
