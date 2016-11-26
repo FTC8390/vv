@@ -10,11 +10,10 @@ public class Sweeper {
 
     public DcMotor motor;
 
-
     public void init(HardwareMap hardwareMap) {
         motor = hardwareMap.dcMotor.get("sweeper");
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
-
 
     public void sweepIn()
     {
