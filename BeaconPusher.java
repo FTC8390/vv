@@ -16,18 +16,18 @@ public class BeaconPusher {
     }
 
     public void rightIn() {
-        rightServo.setPosition(.5);
+        rightServo.setPosition(35/256);
     }
 
     public void rightOut() {
-        rightServo.setPosition(.5);
+        rightServo.setPosition(170/256);
     }
 
     public void leftIn() {
-        leftServo.setPosition(.5);
+        leftServo.setPosition(235/256);
     }
 
     public void leftOut() {
-        leftServo.setPosition(.5);
+        leftServo.setPosition(100/256);
     }
 }

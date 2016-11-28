@@ -21,6 +21,7 @@ public class AutonShoot extends LinearOpMode {
         autonFile.readDataFromFile(hardwareMap.appContext);
 
         waitForStart();
+        sleep(autonFile.waitTime);
         mooMoo.shooter.turnOn();
 
         mooMoo.driveTrain.drive(0,-autonFile.driveSpeed,0);

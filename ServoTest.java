@@ -9,7 +9,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 @TeleOp(name = "ServoTest")
 public class ServoTest extends OpMode {
-    RobotVV mooMoo;
+    BeaconPusher beaconPusher;
+    Loader loader;
+    LineDetector lineDetector;
 
     double leftPusherPos;
     double rightPusherPos;
@@ -21,8 +23,12 @@ public class ServoTest extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initialized");
 
-        mooMoo = new RobotVV();
-        mooMoo.init(hardwareMap);
+        loader = new Loader();
+        loader.init(hardwareMap);
+        beaconPusher = new BeaconPusher();
+        beaconPusher.init(hardwareMap);
+        lineDetector = new LineDetector();
+        lineDetector.init(hardwareMap);
         leftPusherPos = .5;
         rightPusherPos = .5;
         loaderPos = .5;
@@ -39,7 +45,7 @@ public class ServoTest extends OpMode {
             leftPusherPos = 0;
         if (leftPusherPos > 1)
             leftPusherPos = 1;
-        mooMoo.beaconPusher.leftServo.setPosition(leftPusherPos);
+        beaconPusher.leftServo.setPosition(leftPusherPos);
 
         if (gamepad1.right_bumper) {
             rightPusherPos -= .001;
@@ -51,7 +57,7 @@ public class ServoTest extends OpMode {
             rightPusherPos = 0;
         if (rightPusherPos > 1)
             rightPusherPos = 1;
-        mooMoo.beaconPusher.rightServo.setPosition(rightPusherPos);
+        beaconPusher.rightServo.setPosition(rightPusherPos);
 
         if (gamepad1.dpad_up) {
             loaderPos += .001;
@@ -63,12 +69,12 @@ public class ServoTest extends OpMode {
             loaderPos = 0;
         if (loaderPos > 1)
             loaderPos = 1;
-        mooMoo.loader.servo.setPosition(loaderPos);
+        loader.servo.setPosition(loaderPos);
 
-        telemetry.addData("Right Beacon Pusher Position: " + mooMoo.beaconPusher.rightServo.getPosition(), " Right Trigger is Up, Bumper is Down ");
-        telemetry.addData("Left Beacon Pusher Position: " + mooMoo.beaconPusher.leftServo.getPosition(), " Left Trigger is Up, Bumper is Down ");
-        telemetry.addData("Loader Position: " + mooMoo.loader.servo.getPosition(), " Dpad_Up is Up, Dpad_Down is Down ");
-        telemetry.addData("A: Middle Light Sensor Value: ", mooMoo.lineDetector.middle.getLightDetected());
+        telemetry.addData("Right Beacon Pusher Position: " + beaconPusher.rightServo.getPosition(), " Right Trigger is Up, Bumper is Down ");
+        telemetry.addData("Left Beacon Pusher Position: " + beaconPusher.leftServo.getPosition(), " Left Trigger is Up, Bumper is Down ");
+        telemetry.addData("Loader Position: " + loader.servo.getPosition(), " Dpad_Up is Up, Dpad_Down is Down ");
+        telemetry.addData("A: Middle Light Sensor Value: ", lineDetector.middle.getLightDetected());
     }
 
 }

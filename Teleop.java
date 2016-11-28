@@ -11,6 +11,7 @@ public class Teleop extends OpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
+    double timeLeft = 120;
 
     @Override
     public void init() {
@@ -33,6 +34,7 @@ public class Teleop extends OpMode {
 
     @Override
     public void loop() {
+        timeLeft = 120 - runtime.seconds();
         mooMoo.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
 
         //Set drive train direction
@@ -93,6 +95,7 @@ public class Teleop extends OpMode {
 
 
         telemetry.addData("Status", "Running: " + runtime.toString());
+        telemetry.addLine("Time Left: " + timeLeft );
     }
 
     @Override

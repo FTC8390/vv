@@ -14,10 +14,10 @@ public class Loader {
     }
 
     public void raise() {
-        servo.setPosition(.25);
+        servo.setPosition(150/256);
     }
 
     public void lower() {
-        servo.setPosition(.75);
+        servo.setPosition(90/256);
     }
 }
