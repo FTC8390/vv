@@ -11,13 +11,14 @@ public class Loader {
 
     public void init(HardwareMap hardwareMap) {
         servo = hardwareMap.servo.get("loader");
+        lower();
     }
 
     public void raise() {
-        servo.setPosition(150/256);
+        servo.setPosition(150.0/256.0);
     }
 
     public void lower() {
-        servo.setPosition(90/256);
+        servo.setPosition(90.0/256.0);
     }
 }
