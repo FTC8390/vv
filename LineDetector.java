@@ -24,9 +24,22 @@ public class LineDetector {
     }
 
 
+
+    public boolean lineIsFound()
+    {
+        if(left.getLightDetected() > .5 )
+            return true;
+        else if(middle.getLightDetected() > .5)
+            return  true;
+        else if(right.getLightDetected() > .5)
+            return true;
+        else
+            return false;
+    }
+
     public boolean lineIsFoundInMiddle()
     {
-        if(middle.getLightDetected() > .5 )
+        if(middle.getLightDetected() > .5)
             return true;
         else
             return false;

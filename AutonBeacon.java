@@ -72,12 +72,13 @@ public class AutonBeacon extends LinearOpModeCamera {
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, 0);
 
         //wait until detected line
-        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
             sleep(10);
 
-        mooMoo.driveTrain.drive(0, 0, 0);
+        checkAndPressBeacon(autonFile, xDirection);
 
-        checkAndPressBeacon(autonFile);
+        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, 0 , 0 );
+        sleep(125);
 
         /*
         mooMoo.loader.raise();
@@ -88,33 +89,37 @@ public class AutonBeacon extends LinearOpModeCamera {
         sleep(waitTimeAtRaise);
         mooMoo.loader.lower();
         mooMoo.shooter.turnOff();
-
+        */
         mooMoo.beaconPusher.rightIn();
         mooMoo.beaconPusher.leftIn();
 
-        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, .25 * autonFile.driveSpeed , 0 );
-
-        while(!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, .25 * autonFile.driveSpeed , 0 );
+        sleep(750);
+        while(!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
         {
             sleep(10);
         }
 
-        checkAndPressBeacon(autonFile);
+        checkAndPressBeacon(autonFile, xDirection);
 
         sleep(1000);
         mooMoo.beaconPusher.rightIn();
         mooMoo.beaconPusher.leftIn();
-         */
+
 
         stopCamera();
     }
 
-    public void checkAndPressBeacon(AutonFileHandler autonFile) {
+    public void checkAndPressBeacon(AutonFileHandler autonFile, double xDirection) {
         mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
         sleep(500);
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
-        sleep(250);
-        mooMoo.driveTrain.drive(0, 0, 0);
+        sleep(125);
+        mooMoo.driveTrain.drive(0-xDirection * 1/3 * autonFile.driveSpeed, 0, 0);
+
+        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+            sleep(10);
+        mooMoo.driveTrain.drive( 0 , 0 , 0 );
 
         if (cameraIsWorking) {
             if (imageReady()) { // only do this if an image has been returned from the camera
@@ -130,7 +135,7 @@ public class AutonBeacon extends LinearOpModeCamera {
             }
         }
 
-        mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
+        mooMoo.driveTrain.drive(0, 1.25 * autonFile.driveSpeed, 0);
         sleep(350);
         mooMoo.driveTrain.drive(0, 0, 0);
     }

@@ -31,8 +31,8 @@ public class BeaconColorDetector {
         int leftXEnd = (int)((double)rgbImage.getWidth() * 0.4);
         int rightXEnd = (int)((double)rgbImage.getWidth() * 0.9);
 
-        int yStart = (int)((double)rgbImage.getHeight() * 0.3);
-        int yEnd = (int)((double)rgbImage.getHeight() * 0.8);
+        int yStart = (int)((double)rgbImage.getHeight() * 0.0);
+        int yEnd = (int)((double)rgbImage.getHeight() * 0.3);
 
         int rightRedValue = 0;
         int rightBlueValue = 0;
@@ -56,9 +56,9 @@ public class BeaconColorDetector {
         }
 
         if (leftRedValue - leftBlueValue > rightRedValue - rightBlueValue)
-            return false;
-        else
             return true;
+        else
+            return false;
     }
 
 }
