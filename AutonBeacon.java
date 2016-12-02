@@ -20,6 +20,11 @@ public class AutonBeacon extends LinearOpModeCamera {
     // DcMotor leftMotor = null;
     // DcMotor rightMotor = null;
 
+    public AutonBeacon (boolean isRed)
+    {
+        allianceIsRed = isRed;
+    }
+
     @Override
     public void runOpMode() {
         mooMoo = new RobotVV();

@@ -18,6 +18,7 @@ public class AutonFileHandler {
     public Integer driveDistanceClose;
     public Integer driveDistanceFar;
     public Double driveSpeed;
+    public Double whiteColor;
     // variables used during the configuration process
     private String configFileName = "AutonInfo.txt";
 
@@ -26,6 +27,7 @@ public class AutonFileHandler {
         driveDistanceClose = 9000;
         driveDistanceFar = 14564;
         driveSpeed = .8;
+        whiteColor = .0;
     }
 
     public void readDataFromFile(Context context) {
@@ -45,6 +47,7 @@ public class AutonFileHandler {
                 driveDistanceClose = Integer.valueOf(bufferedReader.readLine());
                 driveDistanceFar = Integer.valueOf(bufferedReader.readLine());
                 driveSpeed = Double.valueOf(bufferedReader.readLine());
+                whiteColor = Double.valueOf(bufferedReader.readLine());
                 inputStream.close();
             }
         } catch (Exception e) {
@@ -65,6 +68,7 @@ public class AutonFileHandler {
             outputStreamWriter.write(Integer.toString(driveDistanceClose) + "\n");
             outputStreamWriter.write(Integer.toString(driveDistanceFar) + "\n");
             outputStreamWriter.write(Double.toString(driveSpeed) + "\n");
+            outputStreamWriter.write(Double.toString(whiteColor) + "\n");
             outputStreamWriter.close();
             return true;
         } catch (IOException e) {

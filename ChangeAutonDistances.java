@@ -26,6 +26,7 @@ public class ChangeAutonDistances extends OpMode {
         telemetry.addData("CLOSE B = more, X = less, DRIVE DISTANCE", autonFile.driveDistanceClose);
 
         telemetry.addData("FAR Y = more, A = less DRIVE DISTANCE", autonFile.driveDistanceFar);
+        telemetry.addData("Dpad_Left is more, Dpad_Right is less WHITE COLOR" , autonFile.whiteColor);
 
 
         //First Drive Distance
@@ -61,6 +62,15 @@ public class ChangeAutonDistances extends OpMode {
         }
         if (gamepad1.b) {
             autonFile.driveDistanceClose += 2;
+        }
+
+        if(gamepad1.dpad_left)
+        {
+            autonFile.whiteColor += .05;
+        }
+        if(gamepad1.dpad_right)
+        {
+            autonFile.whiteColor -= .05;
         }
 
     }
