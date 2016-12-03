@@ -26,7 +26,7 @@ public class AutonFileHandler {
         waitTime = 0;
         driveDistanceClose = 9000;
         driveDistanceFar = 14564;
-        driveSpeed = .8;
+        driveSpeed = .5;
         whiteColor = .0;
     }
 
