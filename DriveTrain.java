@@ -54,6 +54,10 @@ public class DriveTrain {
         motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
     }
 
+    public void stop() {
+        drive(0,0,0);
+    }
+
     //changes the front to the selected color and update motors
     public void setFront(Color color) {
         frontColor = color;
