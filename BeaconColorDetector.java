@@ -26,13 +26,13 @@ public class BeaconColorDetector {
 
     public boolean blueIsOnLeft(Bitmap rgbImage)
     {
-        int leftXStart = (int)((double)rgbImage.getWidth() * 0.1);
-        int rightXStart = (int)((double)rgbImage.getWidth() * 0.6);
-        int leftXEnd = (int)((double)rgbImage.getWidth() * 0.4);
-        int rightXEnd = (int)((double)rgbImage.getWidth() * 0.9);
+        int leftXStart = (int)((double)rgbImage.getWidth() * 0.05);
+        int rightXStart = (int)((double)rgbImage.getWidth() * 0.75);
+        int leftXEnd = (int)((double)rgbImage.getWidth() * 0.25);
+        int rightXEnd = (int)((double)rgbImage.getWidth() * 0.95);
 
-        int yStart = (int)((double)rgbImage.getHeight() * 0.0);
-        int yEnd = (int)((double)rgbImage.getHeight() * 0.3);
+        int yStart = (int)((double)rgbImage.getHeight() * 0.4);
+        int yEnd = (int)((double)rgbImage.getHeight() * 0.6);
 
         int rightRedValue = 0;
         int rightBlueValue = 0;
