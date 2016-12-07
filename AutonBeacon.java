@@ -16,10 +16,17 @@ public class AutonBeacon extends LinearOpModeCamera {
     boolean allianceIsRed = true;
     boolean cameraIsWorking = false;
     int ds2 = 2;
+    double xDirection;
+    AutonFileHandler autonFile;
+
     private ElapsedTime runtime = new ElapsedTime();
 
     public AutonBeacon(boolean isRed) {
         allianceIsRed = isRed;
+        if (allianceIsRed)
+            xDirection = 1;
+        else
+            xDirection = -1;
     }
 
     @Override
@@ -27,12 +34,8 @@ public class AutonBeacon extends LinearOpModeCamera {
         mooMoo = new RobotVV();
         mooMoo.init(hardwareMap);
 
-        AutonFileHandler autonFile;
         autonFile = new AutonFileHandler();
         autonFile.readDataFromFile(hardwareMap.appContext);
-
-        double waitTimeAtRaise = 500;
-        double waitTimeAtLower = 1000;
 
         if (isCameraAvailable()) {
             setCameraDownsampling(8);
@@ -60,11 +63,6 @@ public class AutonBeacon extends LinearOpModeCamera {
 
         //mooMoo.shooter.turnOn();
 
-        double xDirection;
-        if (allianceIsRed)
-            xDirection = 1;
-        else
-            xDirection = -1;
 
         // move diagonal to first beacon
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, 0);
@@ -73,7 +71,7 @@ public class AutonBeacon extends LinearOpModeCamera {
         while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
             sleep(10);
 
-        checkAndPressBeacon(autonFile, xDirection);
+        checkAndPressBeacon();
 
         mooMoo.beaconPusher.rightIn();
         mooMoo.beaconPusher.leftIn();
@@ -81,11 +79,11 @@ public class AutonBeacon extends LinearOpModeCamera {
         // shoot
         /*
         mooMoo.loader.raise();
-        sleep(waitTimeAtRaise);
+        sleep(mooMoo.loader.timeToRaise);
         mooMoo.loader.lower();
-        sleep(waitTimeAtLower);
+        sleep(mooMoo.loader.timeToLower);
         mooMoo.loader.raise();
-        sleep(waitTimeAtRaise);
+        sleep(mooMoo.loader.timeToRaise);
         mooMoo.loader.lower();
         mooMoo.shooter.turnOff();
         */
@@ -99,7 +97,7 @@ public class AutonBeacon extends LinearOpModeCamera {
         while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
             sleep(10);
 
-        checkAndPressBeacon(autonFile, xDirection);
+        checkAndPressBeacon();
         mooMoo.driveTrain.stop();
 
         mooMoo.beaconPusher.rightIn();
@@ -109,7 +107,7 @@ public class AutonBeacon extends LinearOpModeCamera {
         stopCamera();
     }
 
-    public void checkAndPressBeacon(AutonFileHandler autonFile, double xDirection) {
+    public void checkAndPressBeacon() {
         // go forward into wall
         mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
         sleep(500);
@@ -125,7 +123,6 @@ public class AutonBeacon extends LinearOpModeCamera {
 
         // stop
         mooMoo.driveTrain.stop();
-
         // find beacon colors and push out the correct beacon pusher
         if (cameraIsWorking) {
             if (imageReady()) { // only do this if an image has been returned from the camera
