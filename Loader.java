@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 public class Loader {
     public Servo servo;
+    public Servo servo2;
 
     public int timeToRaise;
     public int timeToLower;
@@ -15,6 +16,7 @@ public class Loader {
 
     public void init(HardwareMap hardwareMap) {
         servo = hardwareMap.servo.get("loader");
+        servo2 = hardwareMap.servo.get("loader");
         lower();
 
         timeToRaise = 500;

@@ -16,6 +16,7 @@ public class ServoTest extends OpMode {
     double leftPusherPos;
     double rightPusherPos;
     double loaderPos;
+    double loaderPos2;
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -32,6 +33,7 @@ public class ServoTest extends OpMode {
         leftPusherPos = .5;
         rightPusherPos = .5;
         loaderPos = .5;
+        loaderPos2 = .5;
     }
 
     public void loop() {
@@ -71,9 +73,22 @@ public class ServoTest extends OpMode {
             loaderPos = 1;
         loader.servo.setPosition(loaderPos);
 
+        if (gamepad1.y) {
+            loaderPos2 += .001;
+        }
+        if (gamepad1.a) {
+            loaderPos2 -= .001;
+        }
+        if (loaderPos2 < 0)
+            loaderPos2 = 0;
+        if (loaderPos2 > 1)
+            loaderPos2 = 1;
+        loader.servo2.setPosition(loaderPos2);
+
         telemetry.addData("Right Beacon Pusher Position: " + beaconPusher.rightServo.getPosition(), " Right Trigger is Up, Bumper is Down ");
         telemetry.addData("Left Beacon Pusher Position: " + beaconPusher.leftServo.getPosition(), " Left Trigger is Up, Bumper is Down ");
         telemetry.addData("Loader Position: " + loader.servo.getPosition(), " Dpad_Up is Up, Dpad_Down is Down ");
+        telemetry.addData("Loader2 Position: " + loader.servo2.getPosition(), " Y is Up, A is Down ");
         telemetry.addData("A: Middle Light Sensor Value: ", lineDetector.middle.getLightDetected());
     }
 
