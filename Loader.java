@@ -13,22 +13,22 @@ public class Loader {
     public int timeToRaise;
     public int timeToLower;
 
-
     public void init(HardwareMap hardwareMap) {
         servo = hardwareMap.servo.get("loader");
-        servo2 = hardwareMap.servo.get("loader");
+        servo2 = hardwareMap.servo.get("loader2");
         lower();
 
         timeToRaise = 500;
         timeToLower = 1000;
-
     }
 
     public void raise() {
-        servo.setPosition(150.0/256.0);
+        servo.setPosition(150.0 / 256.0);
+        // servo2.setPosition(  /256.0);
     }
 
     public void lower() {
-        servo.setPosition(90.0/256.0);
+        servo.setPosition(90.0 / 256.0);
+        // servo2.setPosition(  /256.0);
     }
 }
