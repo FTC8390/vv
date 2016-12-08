@@ -19,7 +19,7 @@ public class AutonBeacon extends LinearOpModeCamera {
     double xDirection;
     AutonFileHandler autonFile;
 
-    private ElapsedTime runtime = new ElapsedTime();
+    ElapsedTime runtime = new ElapsedTime();
 
     public AutonBeacon(boolean isRed) {
         allianceIsRed = isRed;
@@ -58,11 +58,11 @@ public class AutonBeacon extends LinearOpModeCamera {
         }
 
         waitForStart();
+        runtime.reset();
 
         sleep(autonFile.waitTime);
 
         //mooMoo.shooter.turnOn();
-
 
         // move diagonal to first beacon
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, 0);
