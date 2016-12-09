@@ -19,7 +19,6 @@ public class Teleop extends OpMode {
 
         mooMoo = new RobotVV();
         mooMoo.init(hardwareMap);
-
     }
 
     @Override
