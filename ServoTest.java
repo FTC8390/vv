@@ -89,7 +89,9 @@ public class ServoTest extends OpMode {
         telemetry.addData("Left Beacon Pusher Position: " + beaconPusher.leftServo.getPosition(), " Left Trigger is Up, Bumper is Down ");
         telemetry.addData("Loader Position: " + loader.servo.getPosition(), " Dpad_Up is Up, Dpad_Down is Down ");
         telemetry.addData("Loader2 Position: " + loader.servo2.getPosition(), " Y is Up, A is Down ");
+        telemetry.addData("A: Left Light Sensor Value: ", lineDetector.left.getLightDetected());
         telemetry.addData("A: Middle Light Sensor Value: ", lineDetector.middle.getLightDetected());
+        telemetry.addData("A: Right Light Sensor Value: ", lineDetector.right.getLightDetected());
     }
 
 }
