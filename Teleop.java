@@ -93,8 +93,7 @@ public class Teleop extends OpMode {
         if (gamepad2.b)
             mooMoo.beaconPusher.rightOut();
 
-
-        telemetry.addData("Status", "Running: " + runtime.toString());
+        //telemetry.addData("Status", "Running: " + runtime.toString());
         telemetry.addLine("Time Left: " + timeLeft );
     }
 
