@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //@Disabled
 public class Teleop extends OpMode {
     RobotVV mooMoo;
+    double turnDirection;
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
@@ -19,6 +20,8 @@ public class Teleop extends OpMode {
 
         mooMoo = new RobotVV();
         mooMoo.init(hardwareMap);
+
+        turnDirection=1;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class Teleop extends OpMode {
         if (gamepad1.x)
             mooMoo.driveTrain.setBack(DriveTrain.Color.BLUE);
 
-        mooMoo.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, gamepad1.left_stick_x);
+        mooMoo.driveTrain.drive(gamepad1.right_stick_x, -gamepad1.right_stick_y, turnDirection* gamepad1.left_stick_x);
 
         //Shooter on and off
         if (gamepad1.dpad_up)
