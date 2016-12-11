@@ -44,7 +44,21 @@ public class DriveTrain {
         motorByColor[REDGREEN.ordinal()] = hardwareMap.dcMotor.get("rg");
         motorByColor[GREENBLUE.ordinal()] = hardwareMap.dcMotor.get("gb");
 
+        runWithoutEncoders();
+
         setFront(YELLOW);
+    }
+
+    public void runWithoutEncoders() {
+        for (int i=0; i<4; i++) {
+            motorByColor[i].setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+    }
+
+    public void runUsingEncoders() {
+        for (int i=0; i<4; i++) {
+            motorByColor[i].setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
 
     public void drive(double x, double y, double turn) {
