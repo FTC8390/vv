@@ -5,6 +5,7 @@ package ftc8390.vv;
  */
 
 public class AutonBeaconAndShoot extends AutonBeacon {
+    
     AutonBeaconAndShoot(boolean allianceIsRed) {
         super(allianceIsRed);
     }
