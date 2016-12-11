@@ -14,7 +14,6 @@ public class Shooter {
 
     public void init(HardwareMap hardwareMap) {
 
-
         leftMotor = hardwareMap.dcMotor.get("lsm");
         rightMotor = hardwareMap.dcMotor.get("rsm");
 
@@ -56,6 +55,5 @@ public class Shooter {
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
-
 
 }
