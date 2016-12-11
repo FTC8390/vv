@@ -10,16 +10,17 @@ public class Shooter {
 
     public DcMotor leftMotor;
     public DcMotor rightMotor;
-    public  double shootSpeed;
+    public double shootSpeed;
 
     public void init(HardwareMap hardwareMap) {
 
 
         leftMotor = hardwareMap.dcMotor.get("lsm");
         rightMotor = hardwareMap.dcMotor.get("rsm");
+
+        runUsingEncoders();
+
         // MAKE SURE TO PUT SHOOTER MOTORS INTO FLOAT MODE SO THEY DON'T BREAK!!!
-        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
@@ -36,10 +37,25 @@ public class Shooter {
         rightMotor.setPower(0);
     }
 
-    public void setPower(double power)
-    {
+    public void setPower(double power) {
         leftMotor.setPower(power);
         rightMotor.setPower(-power);
     }
+
+    public void stopAndResetEncoders() {
+        leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    public void runUsingEncoders() {
+        leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public void runWithoutEncoders() {
+        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
 
 }
