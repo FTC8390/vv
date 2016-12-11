@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name = "Teleop")  // @Autonomous(...) is the other common choice
 //@Disabled
 public class Teleop extends OpMode {
+    
     RobotVV mooMoo;
     double turnDirection;
 
-    /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
-    double timeLeft = 120;
+    double timeLeft;
 
     @Override
     public void init() {
@@ -22,16 +22,12 @@ public class Teleop extends OpMode {
         mooMoo.init(hardwareMap);
 
         turnDirection=1;
-    }
-
-    @Override
-    public void init_loop() {
+        timeLeft=120;
     }
 
     @Override
     public void start() {
         runtime.reset();
-        // mooMoo.shooter.turnOn();
     }
 
     @Override
