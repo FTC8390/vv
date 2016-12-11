@@ -62,8 +62,6 @@ public class AutonBeacon extends LinearOpModeCamera {
 
         sleep(autonFile.waitTime);
 
-        //mooMoo.shooter.turnOn();
-
         // move diagonal to first beacon
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, 0);
 
@@ -75,18 +73,6 @@ public class AutonBeacon extends LinearOpModeCamera {
 
         mooMoo.beaconPusher.rightIn();
         mooMoo.beaconPusher.leftIn();
-
-        // shoot
-        /*
-        mooMoo.loader.raise();
-        sleep(mooMoo.loader.timeToRaise);
-        mooMoo.loader.lower();
-        sleep(mooMoo.loader.timeToLower);
-        mooMoo.loader.raise();
-        sleep(mooMoo.loader.timeToRaise);
-        mooMoo.loader.lower();
-        mooMoo.shooter.turnOff();
-        */
 
         // move against the wall to second beacon
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, .25 * autonFile.driveSpeed, 0);
@@ -110,7 +96,7 @@ public class AutonBeacon extends LinearOpModeCamera {
     public void checkAndPressBeacon() {
         // go forward into wall
         mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
-        sleep(500);
+        sleep(750);
 
         // back up a little
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
