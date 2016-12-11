@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Created by jmgu3 on 11/23/2016.
  */
-@TeleOp(name = "ServoTest")
+@TeleOp(name = "ServoTest", group = "Test")
 public class ServoTest extends OpMode {
     BeaconPusher beaconPusher;
     Loader loader;

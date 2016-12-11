@@ -13,7 +13,7 @@ import for_camera_opmodes.LinearOpModeCamera;
  * Enables control of the robot via the gamepad
  */
 
-@TeleOp(name = "TestColorDetector")
+@TeleOp(name = "TestColorDetector", group = "Test")
 //@Disabled
 public class TestColorDetector extends LinearOpModeCamera {
 

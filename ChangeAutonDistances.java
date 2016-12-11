@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 /**
  * Created by jmgu3 on 11/7/2016.
  */
-@TeleOp(name = "ChangeAuton")
+@TeleOp(name = "ChangeAuton", group = "Test")
 public class ChangeAutonDistances extends OpMode {
 
     AutonFileHandler autonFile;
