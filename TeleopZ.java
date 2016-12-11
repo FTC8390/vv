@@ -11,5 +11,4 @@ public class TeleopZ extends Teleop {
         super.init();
         turnDirection=-1;
     }
-
 }
