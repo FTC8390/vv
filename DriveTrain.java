@@ -23,9 +23,7 @@ import static ftc8390.vv.DriveTrain.CornerDirection.FRONTRIGHT;
 public class DriveTrain {
 
     public enum Color {YELLOW, RED, GREEN, BLUE}
-
     public enum CornerColor {BLUEYELLOW, YELLOWRED, REDGREEN, GREENBLUE}
-
     public enum CornerDirection {FRONTLEFT, FRONTRIGHT, BACKRIGHT, BACKLEFT}
 
     private Color frontColor;
