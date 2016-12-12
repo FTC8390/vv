@@ -21,10 +21,10 @@ public class AutonFileHandler {
     // variables used during the configuration process
     private String configFileName = "AutonInfo.txt";
 
-    private void initializeValues() {
+    public void initializeValues() {
         waitTime = 0;
         driveSpeed = .5;
-        whiteColor = .0;
+        whiteColor = .5;
         driveBackTime = 750.0;
     }
 

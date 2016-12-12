@@ -88,7 +88,7 @@ public class AutonBeacon extends LinearOpModeCamera {
 
         mooMoo.beaconPusher.rightIn();
         mooMoo.beaconPusher.leftIn();
-        sleep(1000);
+        sleep(500);
 
         stopCamera();
     }

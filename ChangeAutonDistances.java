@@ -22,9 +22,11 @@ public class ChangeAutonDistances extends OpMode {
 
         telemetry.addData("A Left Trig = less, Bumper = more, DELAY START BY:", autonFile.waitTime);
         telemetry.addData("A DPad_Up = more, DPad_down = less, DRIVE SPEED", autonFile.driveSpeed);
-
         telemetry.addData("Dpad_Left is more, Dpad_Right is less WHITE COLOR" , autonFile.whiteColor);
+        telemetry.addData("Y is more, A is less DRIVE BACK_DIST" , autonFile.whiteColor);
 
+        if (gamepad2.left_bumper && gamepad2.right_bumper)
+            autonFile.initializeValues();
 
         if(gamepad1.y)
             autonFile.driveBackTime += .5;

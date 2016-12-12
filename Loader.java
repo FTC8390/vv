@@ -21,7 +21,7 @@ public class Loader {
         lower();
 
         timeToRaise = 500;
-        timeToLower = 1000;
+        timeToLower = 2000;
 
     }
 

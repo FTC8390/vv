@@ -1,5 +1,7 @@
 package ftc8390.vv;
 
+import static android.R.attr.x;
+
 /**
  * Created on 12/11/2016.
  */
@@ -13,29 +15,47 @@ public class AutonBeaconAndShoot extends AutonBeacon {
     @Override
     public void runOpMode() {
         super.runOpMode(); // find and press the beacons
-        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0 , 0);
 
         mooMoo.shooter.turnOn();
+        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0 , 0);
 
         sleep(1000);
         // wait until the first line
         while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
             sleep(10);
 
+        mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
+        sleep(750);
+
+        // back up a little
+        mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
+        sleep(125);
+
+        mooMoo.driveTrain.drive( xDirection * 1 / 3 * autonFile.driveSpeed, 0, 0);
+        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+            sleep(10);
+
         mooMoo.driveTrain.drive( 0 , -autonFile.driveSpeed , 0 );
         sleep((long)autonFile.driveBackTime.doubleValue());
         mooMoo.driveTrain.stop();
 
-        mooMoo.loader.raise();
-        sleep(mooMoo.loader.timeToRaise);
-        mooMoo.loader.lower();
-        sleep(mooMoo.loader.timeToLower);
-        mooMoo.loader.raise();
-        sleep(mooMoo.loader.timeToRaise);
-        mooMoo.loader.lower();
-        sleep(mooMoo.loader.timeToLower);
+        sleep(1000);
 
-        // now get in position and shoot!
+        mooMoo.loader.raise();
+        sleep(mooMoo.loader.timeToRaise);
+        mooMoo.loader.lower();
+        sleep(mooMoo.loader.timeToLower);
+        mooMoo.loader.raise();
+        sleep(mooMoo.loader.timeToRaise);
+        mooMoo.loader.lower();
+        //sleep(mooMoo.loader.timeToLower);
+
+        mooMoo.driveTrain.drive( 0 , -autonFile.driveSpeed , 0 );
+        sleep(1500);
+
+        mooMoo.driveTrain.drive( 0,0,xDirection * autonFile.driveSpeed);
+        sleep(1500);
+        mooMoo.driveTrain.stop();
 
     }
 }
