@@ -15,19 +15,17 @@ public class AutonFileHandler {
 
     // all data here
     public Integer waitTime;
-    public Integer driveDistanceClose;
-    public Integer driveDistanceFar;
     public Double driveSpeed;
     public Double whiteColor;
+    public Double driveBackTime;
     // variables used during the configuration process
     private String configFileName = "AutonInfo.txt";
 
     private void initializeValues() {
         waitTime = 0;
-        driveDistanceClose = 9000;
-        driveDistanceFar = 14564;
         driveSpeed = .5;
         whiteColor = .0;
+        driveBackTime = 750.0;
     }
 
     public void readDataFromFile(Context context) {
@@ -44,10 +42,10 @@ public class AutonFileHandler {
 
                 // read data here
                 waitTime = Integer.valueOf(bufferedReader.readLine());
-                driveDistanceClose = Integer.valueOf(bufferedReader.readLine());
-                driveDistanceFar = Integer.valueOf(bufferedReader.readLine());
                 driveSpeed = Double.valueOf(bufferedReader.readLine());
                 whiteColor = Double.valueOf(bufferedReader.readLine());
+                driveBackTime = Double.valueOf(bufferedReader.readLine());
+
                 inputStream.close();
             }
         } catch (Exception e) {
@@ -65,10 +63,9 @@ public class AutonFileHandler {
             // write data here, as a string on its own line. "\n" puts a new line at the end of the write, like hitting "enter"
 
             outputStreamWriter.write(Integer.toString(waitTime) + "\n");
-            outputStreamWriter.write(Integer.toString(driveDistanceClose) + "\n");
-            outputStreamWriter.write(Integer.toString(driveDistanceFar) + "\n");
             outputStreamWriter.write(Double.toString(driveSpeed) + "\n");
             outputStreamWriter.write(Double.toString(whiteColor) + "\n");
+            outputStreamWriter.write(Double.toString(driveBackTime) + "\n");
             outputStreamWriter.close();
             return true;
         } catch (IOException e) {

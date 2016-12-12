@@ -23,20 +23,14 @@ public class ChangeAutonDistances extends OpMode {
         telemetry.addData("A Left Trig = less, Bumper = more, DELAY START BY:", autonFile.waitTime);
         telemetry.addData("A DPad_Up = more, DPad_down = less, DRIVE SPEED", autonFile.driveSpeed);
 
-        telemetry.addData("CLOSE B = more, X = less, DRIVE DISTANCE", autonFile.driveDistanceClose);
-
-        telemetry.addData("FAR Y = more, A = less DRIVE DISTANCE", autonFile.driveDistanceFar);
         telemetry.addData("Dpad_Left is more, Dpad_Right is less WHITE COLOR" , autonFile.whiteColor);
 
 
-        //First Drive Distance
-        if (gamepad1.y) {
-            autonFile.driveDistanceFar += 2;
-        }
+        if(gamepad1.y)
+            autonFile.driveBackTime += .5;
+        if(gamepad1.a)
+            autonFile.driveBackTime -= .5;
 
-        if (gamepad1.a) {
-            autonFile.driveDistanceFar -= 2;
-        }
         //Wait Time at the start
         if (gamepad1.left_bumper) {
             autonFile.waitTime += 4;
@@ -55,13 +49,6 @@ public class ChangeAutonDistances extends OpMode {
 
         if (gamepad1.dpad_up) {
             autonFile.driveSpeed += .001;
-        }
-
-        if (gamepad1.x) {
-            autonFile.driveDistanceClose -= 2;
-        }
-        if (gamepad1.b) {
-            autonFile.driveDistanceClose += 2;
         }
 
         if(gamepad1.dpad_left)
