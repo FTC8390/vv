@@ -66,7 +66,11 @@ public class AutonBeacon extends LinearOpModeCamera {
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, 0);
 
         // wait until the first line
-        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
+
+        double startTime;
+
+        startTime = runtime.seconds();
+        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive() & (runtime.seconds() - startTime < 5))
             sleep(10);
 
         checkAndPressBeacon();
@@ -80,7 +84,8 @@ public class AutonBeacon extends LinearOpModeCamera {
         sleep(1000); // wait to get past the first line again
 
         // wait until the second line
-        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
+        startTime = runtime.seconds();
+        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive() & (runtime.seconds() - startTime < 5))
             sleep(10);
 
         checkAndPressBeacon();
@@ -104,7 +109,9 @@ public class AutonBeacon extends LinearOpModeCamera {
 
         // drive sideways and look for the white line
         mooMoo.driveTrain.drive(0 - xDirection * 1 / 3 * autonFile.driveSpeed, 0, 0);
-        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+        double startTime;
+        startTime = runtime.seconds();
+        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive() & (runtime.seconds() - startTime < 4))
             sleep(10);
 
         // stop

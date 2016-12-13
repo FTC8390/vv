@@ -18,8 +18,10 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0, 0);
 
         sleep(1000);
-        // wait until the first line
-        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive())
+        // wait until the first line;
+        double startTime;
+        startTime = runtime.seconds();
+        while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive() & (runtime.seconds() - startTime < 5))
             sleep(10);
 
         mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
@@ -30,7 +32,8 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         sleep(125);
 
         mooMoo.driveTrain.drive(xDirection * 1 / 3 * autonFile.driveSpeed, 0, 0);
-        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
+        startTime = runtime.seconds();
+        while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive() & (runtime.seconds() - startTime < 4))
             sleep(10);
 
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
