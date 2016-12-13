@@ -1,13 +1,11 @@
 package ftc8390.vv;
 
-import static android.R.attr.x;
-
 /**
  * Created on 12/11/2016.
  */
 
 public class AutonBeaconAndShoot extends AutonBeacon {
-    
+
     AutonBeaconAndShoot(boolean allianceIsRed) {
         super(allianceIsRed);
     }
@@ -17,7 +15,7 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         super.runOpMode(); // find and press the beacons
 
         mooMoo.shooter.turnOn();
-        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0 , 0);
+        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0, 0);
 
         sleep(1000);
         // wait until the first line
@@ -31,12 +29,12 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
         sleep(125);
 
-        mooMoo.driveTrain.drive( xDirection * 1 / 3 * autonFile.driveSpeed, 0, 0);
+        mooMoo.driveTrain.drive(xDirection * 1 / 3 * autonFile.driveSpeed, 0, 0);
         while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive())
             sleep(10);
 
-        mooMoo.driveTrain.drive( 0 , -autonFile.driveSpeed , 0 );
-        sleep((long)autonFile.driveBackTime.doubleValue());
+        mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
+        sleep((long) autonFile.driveBackTime.doubleValue());
         mooMoo.driveTrain.stop();
 
         sleep(1000);
@@ -49,11 +47,12 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         sleep(mooMoo.loader.timeToRaise);
         mooMoo.loader.lower();
         //sleep(mooMoo.loader.timeToLower);
+        mooMoo.shooter.turnOff();
 
-        mooMoo.driveTrain.drive( 0 , -autonFile.driveSpeed , 0 );
+        mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
         sleep(1500);
 
-        mooMoo.driveTrain.drive( 0,0,xDirection * autonFile.driveSpeed);
+        mooMoo.driveTrain.drive(0, 0, xDirection * autonFile.driveSpeed);
         sleep(1500);
         mooMoo.driveTrain.stop();
 
