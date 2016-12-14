@@ -36,6 +36,8 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive() & (runtime.seconds() - startTime < 4))
             sleep(10);
 
+        mooMoo.sweeper.sweepIn();
+
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
         sleep((long) autonFile.driveBackTime.doubleValue());
         mooMoo.driveTrain.stop();
@@ -51,6 +53,8 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         mooMoo.loader.lower();
         //sleep(mooMoo.loader.timeToLower);
         mooMoo.shooter.turnOff();
+
+        mooMoo.sweeper.stop();
 
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
         sleep(1500);
