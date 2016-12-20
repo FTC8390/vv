@@ -17,9 +17,6 @@ import for_camera_opmodes.LinearOpModeCamera;
 //@Disabled
 public class TestColorDetector extends LinearOpModeCamera {
 
-    DcMotor motorRight;
-    DcMotor motorLeft;
-
     int ds2 = 2;  // additional downsampling of the image
     // set to 1 to disable further downsampling
 
@@ -27,13 +24,6 @@ public class TestColorDetector extends LinearOpModeCamera {
     public void runOpMode() {
 
         String colorString = "NONE";
-
-        // linear OpMode, so could do stuff like this too.
-        /*
-        motorLeft = hardwareMap.dcMotor.get("motor_1");
-        motorRight = hardwareMap.dcMotor.get("motor_2");
-        motorLeft.setDirection(DcMotor.Direction.REVERSE);
-        */
 
         if (isCameraAvailable()) {
 
@@ -53,16 +43,6 @@ public class TestColorDetector extends LinearOpModeCamera {
             telemetry.update();
 
             waitForStart();
-
-            // LinearOpMode, so could do stuff like this too.
-            /*
-            motorLeft.setPower(1);  // drive forward
-            motorRight.setPower(1);
-            sleep(1000);            // for a second.
-            motorLeft.setPower(0);  // stop drive motors.
-            motorRight.setPower(0);
-            sleep(1000);            // wait a second.
-            */
 
             while (opModeIsActive()) {
                 if (imageReady()) { // only do this if an image has been returned from the camera
