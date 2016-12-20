@@ -12,10 +12,7 @@ public class ShooterTest extends OpMode {
     Loader loader;
     Shooter shooter;
 
-
     double shootSpeed;
-    /* Declare OpMode members. */
-    private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void init() {
@@ -30,19 +27,16 @@ public class ShooterTest extends OpMode {
 
     public void loop() {
         if(gamepad1.dpad_left)
-        {
             shootSpeed += .0005;
-        }
         if(gamepad1.dpad_right)
-        {
             shootSpeed -= .0005;
-        }
+
         if(shootSpeed > 1)
             shootSpeed = 1;
         if(shootSpeed < 0)
             shootSpeed = 0;
+        
         shooter.setPower(shootSpeed);
-
 
         if (gamepad2.right_bumper)
             loader.raise();
@@ -51,5 +45,4 @@ public class ShooterTest extends OpMode {
 
        telemetry.addLine("Shooter Speed: " + shootSpeed + "Dpad_Left is up, Dpad_Right is down");
     }
-
 }
