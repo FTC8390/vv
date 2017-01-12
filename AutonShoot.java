@@ -39,7 +39,7 @@ public class AutonShoot extends LinearOpMode {
         mooMoo.sweeper.sweepIn();
 
         mooMoo.driveTrain.drive(0,-autonFile.driveSpeed,0);
-        sleep(1500);
+        sleep(750);
         mooMoo.driveTrain.stop();
         sleep(2000);
 

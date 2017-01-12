@@ -42,7 +42,7 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         sleep((long) autonFile.driveBackTime.doubleValue());
         mooMoo.driveTrain.stop();
 
-        sleep(1000);
+        sleep(2000);
 
         mooMoo.loader.raise();
         sleep(mooMoo.loader.timeToRaise);
