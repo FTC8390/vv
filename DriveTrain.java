@@ -25,9 +25,11 @@ public class DriveTrain {
     public enum Color {YELLOW, RED, GREEN, BLUE}
     public enum CornerColor {BLUEYELLOW, YELLOWRED, REDGREEN, GREENBLUE}
     public enum CornerDirection {FRONTLEFT, FRONTRIGHT, BACKRIGHT, BACKLEFT}
-
+    public enum SpeedSetting {FAST, SLOW}
+    
     private Color frontColor;
-
+    private SpeedSetting speedMode;
+    
     public DcMotor[] motorByColor;
     public DcMotor[] motorByDirection;
 
@@ -76,6 +78,11 @@ public class DriveTrain {
         frontColor = color;
         for (int i = 0; i < 4; i++)
             motorByDirection[i] = motorByColor[(i + frontColor.ordinal()) % 4];
+    }
+    
+    //changes the speed of the robot
+    public void setSpeedMode(SpeedSetting speed) {
+        speedMode = speed;
     }
 
     public void setBack(Color color) {
