@@ -62,11 +62,36 @@ public class DriveTrain {
     }
 
     public void drive(double x, double y, double turn) {
-        motorByDirection[FRONTLEFT.ordinal()].setPower(Range.clip(x + y + turn, -1, 1));
-        motorByDirection[BACKRIGHT.ordinal()].setPower(Range.clip(-x - y + turn, -1, 1));
+        /*
+        double speedMultiplier = 1.0;
+        switch (speedMode)
+        {
+            // lookup parameter for "fast mode"
+            case SpeedSetting.FAST:
+                 speedMultiplier = 1.0;
+                break;
+            case SpeedSetting.SLOW:
+                // lookup slow speed parameter
+                speedMultiplier = 0.5;
+            default:
+                speedMultiplier = 1.0;
+        }
+        
+        motorByDirection[FRONTLEFT.ordinal()].setPower(Range.clip(speedMultiplier*(x + y + turn), -1, 1));
+        motorByDirection[BACKRIGHT.ordinal()].setPower(Range.clip(speedMultiplier*(-x - y + turn), -1, 1));
 
-        motorByDirection[FRONTRIGHT.ordinal()].setPower(Range.clip(x - y + turn, -1, 1));
-        motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
+        motorByDirection[FRONTRIGHT.ordinal()].setPower(Range.clip(speedMultiplier*(x - y + turn), -1, 1));
+        motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(speedMultiplier*(-x + y + turn), -1, 1));
+        */
+        //Daniel speed change code
+        
+       
+            motorByDirection[FRONTLEFT.ordinal()].setPower(Range.clip(x + y + turn, -1, 1));
+            motorByDirection[BACKRIGHT.ordinal()].setPower(Range.clip(-x - y + turn, -1, 1));
+
+            motorByDirection[FRONTRIGHT.ordinal()].setPower(Range.clip(x - y + turn, -1, 1));
+            motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
+       
     }
 
     public void stop() {
