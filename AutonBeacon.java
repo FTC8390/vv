@@ -137,10 +137,10 @@ public class AutonBeacon extends LinearOpModeCamera {
         sleep(350);
 
         // wiggle in case the beacon pusher is off by a little bit?
-        mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0, 0);
-        sleep(125);
-        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, 0, 0);
-        sleep(250);
+        //mooMoo.driveTrain.drive(-xDirection * autonFile.driveSpeed, 0, 0);
+        //sleep(125);
+       // mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, 0, 0);
+       // sleep(250);
         //mooMoo.driveTrain.drive(0, 0, 0);
     }
 

@@ -1,5 +1,7 @@
 package ftc8390.vv;
 
+import android.graphics.Bitmap;
+
 /**
  * Created on 12/11/2016.
  */
@@ -36,6 +38,18 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive() & (runtime.seconds() - startTime < 4))
             sleep(10);
 
+        if(wholeBeaconColored() == 1)
+        {
+            mooMoo.driveTrain.drive( xDirection * autonFile.driveSpeed, 0 , 0);
+            sleep(500);
+            mooMoo.driveTrain.stop();
+
+            checkAndPressBeacon();
+        }
+        mooMoo.driveTrain.stop();
+
+        sleep(500);
+
         mooMoo.sweeper.sweepIn();
 
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
@@ -64,4 +78,23 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         mooMoo.driveTrain.stop();
 
     }
+
+    public int wholeBeaconColored()
+    {
+        if (cameraIsWorking) {
+            if (imageReady()) { // only do this if an image has been returned from the camera
+                Bitmap rgbImage;
+                rgbImage = convertYuvImageToRgb(yuvImage, width, height, ds2);
+
+                if(!mooMoo.beaconColorDetector.wholeBeaconBlue(rgbImage)&&!mooMoo.beaconColorDetector.wholeBeaconRed(rgbImage))
+                    return 0;
+                else
+                    return 1;
+
+            }
+        }
+        return 2;
+    }
+
+
 }
