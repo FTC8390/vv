@@ -62,7 +62,7 @@ public class DriveTrain {
     }
 
     public void drive(double x, double y, double turn) {
-        /*
+        //Daniel speed change code
         double speedMultiplier = 1.0;
         switch (speedMode)
         {
@@ -82,16 +82,17 @@ public class DriveTrain {
 
         motorByDirection[FRONTRIGHT.ordinal()].setPower(Range.clip(speedMultiplier*(x - y + turn), -1, 1));
         motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(speedMultiplier*(-x + y + turn), -1, 1));
-        */
-        //Daniel speed change code
-        
        
+        
+        
+       /*Original Code
             motorByDirection[FRONTLEFT.ordinal()].setPower(Range.clip(x + y + turn, -1, 1));
             motorByDirection[BACKRIGHT.ordinal()].setPower(Range.clip(-x - y + turn, -1, 1));
 
             motorByDirection[FRONTRIGHT.ordinal()].setPower(Range.clip(x - y + turn, -1, 1));
             motorByDirection[BACKLEFT.ordinal()].setPower(Range.clip(-x + y + turn, -1, 1));
-       
+       */
+        
     }
 
     public void stop() {
