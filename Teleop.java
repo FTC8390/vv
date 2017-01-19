@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import static ftc8390.vv.DriveTrain.SpeedSetting.FAST;
+import static ftc8390.vv.DriveTrain.SpeedSetting.SLOW;
+
 @TeleOp(name = "Teleop")  // @Autonomous(...) is the other common choice
 //@Disabled
 public class Teleop extends OpMode {
@@ -36,9 +39,9 @@ public class Teleop extends OpMode {
         
         //set drive speed
         if (gamepad1.left_stick_button || gamepad1.right_stick_button)
-            mooMoo.driveTrain.setSpeedMode(SpeedSetting.SLOW);
+            mooMoo.driveTrain.setSpeedMode(SLOW);
         else
-            mooMoo.driveTrain.setSpeedMode(SpeedSetting.FAST);
+            mooMoo.driveTrain.setSpeedMode(FAST);
         
         //Set drive train direction
         if (gamepad1.a)

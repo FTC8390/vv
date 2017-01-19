@@ -47,6 +47,7 @@ public class DriveTrain {
         runWithoutEncoders();
 
         setFront(YELLOW);
+        speedMode = SpeedSetting.FAST;
     }
 
     public void runWithoutEncoders() {
@@ -67,12 +68,13 @@ public class DriveTrain {
         switch (speedMode)
         {
             // lookup parameter for "fast mode"
-            case SpeedSetting.FAST:
+            case FAST:
                  speedMultiplier = 1.0;
                 break;
-            case SpeedSetting.SLOW:
+            case SLOW:
                 // lookup slow speed parameter
                 speedMultiplier = 0.5;
+                break;
             default:
                 speedMultiplier = 1.0;
         }
