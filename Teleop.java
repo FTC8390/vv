@@ -33,7 +33,13 @@ public class Teleop extends OpMode {
     @Override
     public void loop() {
         timeLeft = 120 - runtime.seconds();
-
+        
+        //set drive speed
+        if (gamepad1.left_stick_button || gamepad1.right_stick_button)
+            mooMoo.driveTrain.setSpeedMode(SpeedSetting.SLOW);
+        else
+            mooMoo.driveTrain.setSpeedMode(SpeedSetting.FAST);
+        
         //Set drive train direction
         if (gamepad1.a)
             mooMoo.driveTrain.setBack(DriveTrain.Color.GREEN);
