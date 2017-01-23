@@ -73,7 +73,7 @@ public class DriveTrain {
                 break;
             case SLOW:
                 // lookup slow speed parameter
-                speedMultiplier = 0.5;
+                speedMultiplier = 0.3;
                 break;
             default:
                 speedMultiplier = 1.0;
