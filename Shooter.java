@@ -23,7 +23,8 @@ public class Shooter {
         leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        shootSpeed = .23;
+        //shootSpeed = .23;
+        shootSpeed = .599999;
     }
 
     public void turnOn() {

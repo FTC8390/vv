@@ -37,18 +37,26 @@ public class AutonBeaconAndShoot extends AutonBeacon {
         startTime = runtime.seconds();
         while (!mooMoo.lineDetector.lineIsFoundInMiddle() & opModeIsActive() & (runtime.seconds() - startTime < 4))
             sleep(10);
-
-        if(wholeBeaconColored() == 1)
-        {
-            mooMoo.driveTrain.drive( xDirection * autonFile.driveSpeed, 0 , 0);
-            sleep(500);
-            mooMoo.driveTrain.stop();
-
-            checkAndPressBeacon();
-        }
         mooMoo.driveTrain.stop();
+       /* if(allianceIsRed)
+        {
+            Bitmap rgbImage;
+            rgbImage = convertYuvImageToRgb(yuvImage, width, height, ds2);
+            if(!mooMoo.beaconColorDetector.wholeBeaconRed( rgbImage )) {
 
-        sleep(500);
+                checkAndPressBeacon();
+            }
+        }else {
+            Bitmap rgbImage;
+            rgbImage = convertYuvImageToRgb(yuvImage, width, height, ds2);
+            if(!mooMoo.beaconColorDetector.wholeBeaconBlue(rgbImage))
+            {
+                checkAndPressBeacon();
+            }
+        }*/
+        //mooMoo.driveTrain.stop();
+
+        //sleep(100000);
 
         mooMoo.sweeper.sweepIn();
 
