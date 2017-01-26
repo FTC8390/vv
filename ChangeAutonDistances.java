@@ -21,6 +21,7 @@ public class ChangeAutonDistances extends OpMode {
     public void init_loop() {
 
         telemetry.addData("A Left Trig = less, Bumper = more, DELAY START BY:", autonFile.waitTime);
+        telemetry.addData("X is less, B is more, SHOOTER WAIT:", autonFile.shooterWait);
         telemetry.addData("A DPad_Up = more, DPad_down = less, DRIVE SPEED", autonFile.driveSpeed);
         telemetry.addData("Dpad_Left is more, Dpad_Right is less WHITE COLOR" , autonFile.whiteColor);
         telemetry.addData("Y is more, A is less DRIVE BACK_DIST" , autonFile.driveBackTime);
@@ -61,7 +62,16 @@ public class ChangeAutonDistances extends OpMode {
         {
             autonFile.whiteColor -= .05;
         }
-
+        /*
+        if(gamepad1.x)
+        {
+            autonFile.shooterWait -+ 4;
+        }
+        if(gamepad.b)
+        {
+            autonFile.shooterWait += 4;
+        }
+        */
     }
 
     @Override
