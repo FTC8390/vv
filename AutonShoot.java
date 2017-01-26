@@ -51,6 +51,8 @@ public class AutonShoot extends LinearOpMode {
         sleep(mooMoo.loader.timeToRaise);
         mooMoo.loader.lower();
         
+        //sleep(autonFile.shooterWait);
+        
         mooMoo.shooter.turnOff();
         mooMoo.sweeper.stop();
 /*
