@@ -40,6 +40,7 @@ public class AutonShoot extends LinearOpMode {
 
         mooMoo.driveTrain.drive(0,-autonFile.driveSpeed,0);
         sleep(750);
+        //sleep(autonFile.shooterForwardTime);
         mooMoo.driveTrain.stop();
         sleep(2000);
 
@@ -52,6 +53,11 @@ public class AutonShoot extends LinearOpMode {
         mooMoo.loader.lower();
         
         //sleep(autonFile.shooterWait);
+
+        /*
+        mooMoo.driveTrain.drive(0,-autonFile.driveSpeed,0);
+        sleep(autonFile.shooterForwardAfterShoot);
+        */
         
         mooMoo.shooter.turnOff();
         mooMoo.sweeper.stop();
