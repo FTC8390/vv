@@ -27,7 +27,7 @@ public class ChangeAutonDistances extends OpMode {
         telemetry.addData("Y is more, A is less DRIVE BACK_DIST" , autonFile.driveBackTime);
 
 
-        //TODO ADD IN autonFile.shooterForwardAfterShoot
+
 
         if (gamepad2.left_bumper && gamepad2.right_bumper)
             autonFile.initializeValues();
@@ -65,7 +65,7 @@ public class ChangeAutonDistances extends OpMode {
         {
             autonFile.whiteColor -= .05;
         }
-        /*
+
         if(gamepad2.x)
         {
             autonFile.shooterWait -= 4;
@@ -74,11 +74,11 @@ public class ChangeAutonDistances extends OpMode {
         {
             autonFile.shooterWait += 4;
         }
-        */
 
 
 
-        /*
+
+
         if(gamepad2.right_trigger > .75)
         {
             autonFile.shooterForwardTime -= 4;
@@ -98,7 +98,7 @@ public class ChangeAutonDistances extends OpMode {
         {
             autonFile.shooterForwardAfterShoot -= 4;
         }
-        */
+
     }
 
     @Override
