@@ -15,9 +15,9 @@ public class AutonFileHandler {
 
     // all data here
     public Integer waitTime;
-    //public Integer shooterWait;
-    //public Integer shooterForwardTime;
-    //public Integer shooterForwardAfterShoot;
+    public Integer shooterWait;
+    public Integer shooterForwardTime;
+    public Integer shooterForwardAfterShoot;
     public Double driveSpeed;
     public Double whiteColor;
     public Double driveBackTime;
@@ -26,9 +26,9 @@ public class AutonFileHandler {
 
     public void initializeValues() {
         waitTime = 0;
-        //shooterWait = 0;
-        //shooterForwardTime = 0;
-        //shooterForwardAfterShoot = 0;
+        shooterWait = 0;
+        shooterForwardTime = 750.0;
+        shooterForwardAfterShoot = 2000;
         driveSpeed = .5;
         whiteColor = .5;
         driveBackTime = 750.0;
@@ -48,9 +48,9 @@ public class AutonFileHandler {
 
                 // read data here
                 waitTime = Integer.valueOf(bufferedReader.readLine());
-                //shooterWait = Integer.valueOf(bufferedReader.readLine());
-                //shooterForwardTime = Integer.valueOf(bufferedReader.readLine());
-                //shooterForwardAfterShoot = Integer.valueOf(bufferedReader.readLine());
+                shooterWait = Integer.valueOf(bufferedReader.readLine());
+                shooterForwardTime = Integer.valueOf(bufferedReader.readLine());
+                shooterForwardAfterShoot = Integer.valueOf(bufferedReader.readLine());
                 driveSpeed = Double.valueOf(bufferedReader.readLine());
                 whiteColor = Double.valueOf(bufferedReader.readLine());
                 driveBackTime = Double.valueOf(bufferedReader.readLine());
@@ -72,9 +72,9 @@ public class AutonFileHandler {
             // write data here, as a string on its own line. "\n" puts a new line at the end of the write, like hitting "enter"
 
             outputStreamWriter.write(Integer.toString(waitTime) + "\n");
-            //outputStreamWriter.write(Integer.toString(shooterWait) + "\n");
-            //outputStreamWriter.write(Integer.toString(shooterForwardTime) + "\n");
-            //outputStreamWriter.write(Integer.toString(shooterForwardAfterShoot) + "\n");
+            outputStreamWriter.write(Integer.toString(shooterWait) + "\n");
+            outputStreamWriter.write(Integer.toString(shooterForwardTime) + "\n");
+            outputStreamWriter.write(Integer.toString(shooterForwardAfterShoot) + "\n");
             outputStreamWriter.write(Double.toString(driveSpeed) + "\n");
             outputStreamWriter.write(Double.toString(whiteColor) + "\n");
             outputStreamWriter.write(Double.toString(driveBackTime) + "\n");

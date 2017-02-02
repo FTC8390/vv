@@ -22,12 +22,14 @@ public class ChangeAutonDistances extends OpMode {
 
         telemetry.addData("A Left Trig = less, Bumper = more, DELAY START BY:", autonFile.waitTime);
         telemetry.addData("X is less, B is more, SHOOTER WAIT:", autonFile.shooterWait);
+        telemetry.addData("LEFT_TRIGGER(2) is less, LEFT_BUMPER(2) is more, SHOOTER FORWARD AFTER SHOOT:", autonFile.shooterForwardAfterShoot);
+        telemetry.addData("RIGHT_TRIGGER(2) is less, RIGHT_BUMPER(2) is more, SHOOTER FORWARD TIME:", autonFile.shooterForwardTime);
         telemetry.addData("A DPad_Up = more, DPad_down = less, DRIVE SPEED", autonFile.driveSpeed);
         telemetry.addData("Dpad_Left is more, Dpad_Right is less WHITE COLOR" , autonFile.whiteColor);
         telemetry.addData("Y is more, A is less DRIVE BACK_DIST" , autonFile.driveBackTime);
 
 
-        //TODO ADD IN autonFile.shooterForwardAfterShoot
+
 
         if (gamepad2.left_bumper && gamepad2.right_bumper)
             autonFile.initializeValues();
@@ -65,40 +67,40 @@ public class ChangeAutonDistances extends OpMode {
         {
             autonFile.whiteColor -= .05;
         }
-        /*
+
         if(gamepad2.x)
         {
-            autonFile.shooterWait -= 4;
+            autonFile.shooterWait -= .05;
         }
         if(gamepad2.b)
         {
-            autonFile.shooterWait += 4;
+            autonFile.shooterWait += .05;
         }
-        */
 
 
 
-        /*
+
+
         if(gamepad2.right_trigger > .75)
         {
-            autonFile.shooterForwardTime -= 4;
+            autonFile.shooterForwardTime -= .05;
         }
         if(gamepad2.right_bumper)
         {
-            autonFile.shooterForwardTime += 4;
+            autonFile.shooterForwardTime += .05;
         }
 
 
 
         if(gamepad2.left_bumper)
         {
-            autonFile.shooterForwardAfterShoot += 4;
+            autonFile.shooterForwardAfterShoot += .05;
         }
         if(gamepad2.left_trigger > .75)
         {
-            autonFile.shooterForwardAfterShoot -= 4;
+            autonFile.shooterForwardAfterShoot -= .05;
         }
-        */
+
     }
 
     @Override
