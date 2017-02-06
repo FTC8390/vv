@@ -59,7 +59,7 @@ public class AutonShootAndBeacon extends AutonBeacon {
         while (!mooMoo.lineDetector.lineIsFound() & opModeIsActive() & (runtime.seconds() - startTime < 5))
             sleep(10);
 
-        mooMoo.driveTrain.stop();
+        navigateLine();
 
         sleep(250);
 
@@ -98,14 +98,15 @@ public class AutonShootAndBeacon extends AutonBeacon {
         stopCamera();
     }
 
-    public void checkAndPressBeacon() {
+    public void navigateLine()
+    {
         // go forward into wall
         mooMoo.driveTrain.drive(0, autonFile.driveSpeed, 0);
         sleep(750);
 
         // back up a little
-        mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
-        sleep(125);
+        //mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
+        //sleep(125);
 
         // drive sideways and look for the white line
         mooMoo.driveTrain.drive(0 - xDirection * 1 / 3 * autonFile.driveSpeed, 0, 0);
@@ -116,6 +117,10 @@ public class AutonShootAndBeacon extends AutonBeacon {
 
         // stop
         mooMoo.driveTrain.stop();
+    }
+
+    public void checkAndPressBeacon() {
+
         // find beacon colors and push out the correct beacon pusher
         if (cameraIsWorking) {
             if (imageReady()) { // only do this if an image has been returned from the camera
