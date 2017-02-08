@@ -134,4 +134,9 @@ public class DriveTrain {
         return frontColor;
     }
 
+    public int getCurrentPositionByColor(CornerColor wheel )
+    {
+        return motorByColor[wheel.ordinal()].getCurrentPosition();
+    }
+
 }

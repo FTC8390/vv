@@ -15,6 +15,7 @@ public class AutonFileHandler {
 
     // all data here
     public Integer waitTime;
+   // public Double shooterSpeed;
     public Double shooterWait;
     public Double shooterForwardTime;
     public Double shooterForwardAfterShoot;
@@ -32,6 +33,7 @@ public class AutonFileHandler {
         driveSpeed = .5;
         whiteColor = .5;
         driveBackTime = 750.0;
+        //shooterSpeed = .531;
     }
 
     public void readDataFromFile(Context context) {
@@ -54,6 +56,7 @@ public class AutonFileHandler {
                 driveSpeed = Double.valueOf(bufferedReader.readLine());
                 whiteColor = Double.valueOf(bufferedReader.readLine());
                 driveBackTime = Double.valueOf(bufferedReader.readLine());
+                //shooterSpeed = Double.valueOf(bufferedReader.readLine());
 
                 inputStream.close();
             }

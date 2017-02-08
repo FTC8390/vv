@@ -15,6 +15,8 @@ public class AutonShootAndBeacon extends AutonBeacon {
 
     public void runOpMode() {
 
+        boolean shootTwo = true;
+
         mooMoo = new RobotVV();
         mooMoo.init(hardwareMap);
 
@@ -41,6 +43,22 @@ public class AutonShootAndBeacon extends AutonBeacon {
             telemetry.update();
         }
 
+        while(!opModeIsActive())
+        {
+            if(gamepad1.dpad_up)
+            {
+                shootTwo = true;
+            }
+            if(gamepad1.dpad_down)
+            {
+                shootTwo = false;
+            }
+
+            telemetry.addData("Use Dpad Up and Down; ShootTwo = ", shootTwo );
+            telemetry.update();
+        }
+
+
         waitForStart();
         runtime.reset();
 
@@ -49,7 +67,7 @@ public class AutonShootAndBeacon extends AutonBeacon {
         sleep(autonFile.waitTime);
 
         // move diagonal to first beacon
-        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, 0);
+        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, .025);
 
         // wait until the first line
 
@@ -63,24 +81,28 @@ public class AutonShootAndBeacon extends AutonBeacon {
 
         sleep(250);
 
-        mooMoo.loader.raise();
-        sleep(mooMoo.loader.timeToRaise);
-        mooMoo.loader.lower();
-        sleep(mooMoo.loader.timeToLower);
-        mooMoo.loader.raise();
-        sleep(mooMoo.loader.timeToRaise);
-        mooMoo.loader.lower();
 
-        sleep(500);
+
+        mooMoo.loader.raise();
+        sleep(mooMoo.loader.timeToRaise);
+        mooMoo.loader.lower();
 
         // back up a little
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
         sleep(125);
+        mooMoo.driveTrain.stop();
 
         checkAndPressBeacon();
 
         mooMoo.beaconPusher.rightIn();
         mooMoo.beaconPusher.leftIn();
+
+        if(shootTwo) {
+            sleep(1000);
+            mooMoo.loader.raise();
+            sleep(mooMoo.loader.timeToRaise);
+            mooMoo.loader.lower();
+        }
 
         // move against the wall to second beacon
         mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, .25 * autonFile.driveSpeed, 0);
@@ -96,6 +118,7 @@ public class AutonShootAndBeacon extends AutonBeacon {
         // back up a little
         mooMoo.driveTrain.drive(0, -autonFile.driveSpeed, 0);
         sleep(125);
+        mooMoo.driveTrain.stop();
 
         checkAndPressBeacon();
         mooMoo.driveTrain.stop();
