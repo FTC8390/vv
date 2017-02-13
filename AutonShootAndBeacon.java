@@ -2,6 +2,8 @@ package ftc8390.vv;
 
 import android.graphics.Bitmap;
 
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 /**
  * Created on 12/11/2016.
  */
@@ -67,7 +69,7 @@ public class AutonShootAndBeacon extends AutonBeacon {
         sleep(autonFile.waitTime);
 
         // move diagonal to first beacon
-        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, .025);
+        mooMoo.driveTrain.drive(xDirection * autonFile.driveSpeed, autonFile.driveSpeed, .035);
 
         // wait until the first line
 
