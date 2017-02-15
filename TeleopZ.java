@@ -1,9 +1,10 @@
 package ftc8390.vv;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "TeleopZ")  // @Autonomous(...) is the other common choice
-//@Disabled
+@Disabled
 public class TeleopZ extends Teleop {
 
     @Override

@@ -17,6 +17,10 @@ public class Teleop extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
     double timeLeft;
 
+    boolean loadedLastTime = false;
+
+    double lastLoadTime;
+
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
@@ -26,6 +30,8 @@ public class Teleop extends OpMode {
 
         turnDirection=1;
         timeLeft=120;
+
+        lastLoadTime = -10000;
     }
 
     @Override
@@ -64,6 +70,20 @@ public class Teleop extends OpMode {
             mooMoo.shooter.turnOn();
         if (gamepad2.dpad_down)
             mooMoo.shooter.turnOff();
+        if (gamepad2.dpad_left)
+            mooMoo.shooter.turnOnNoEncoder();
+
+        if (!mooMoo.shooter.usingEncoders) {
+
+            if (runtime.milliseconds() < lastLoadTime + 1000)
+                mooMoo.shooter.turnOnNoEncoderHigher();
+            else
+                mooMoo.shooter.turnOnNoEncoder();
+
+
+        }
+
+
 
         //Sweeper on and off
         if (gamepad2.right_stick_y<-.5)
@@ -78,6 +98,11 @@ public class Teleop extends OpMode {
             mooMoo.loader.raise();
         else
             mooMoo.loader.lower();
+
+        if (gamepad2.right_bumper && !loadedLastTime)
+            lastLoadTime = runtime.milliseconds();
+
+        loadedLastTime = gamepad2.right_bumper;
 
         //Beacon pusher in and out
         if (gamepad1.left_bumper) {

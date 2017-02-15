@@ -11,6 +11,10 @@ public class Shooter {
     public DcMotor leftMotor;
     public DcMotor rightMotor;
     public double shootSpeed;
+    public double shootSpeedNoEncoder;
+    public double shootSpeedNoEncoderHigher;
+    public boolean usingEncoders;
+
 
     public void init(HardwareMap hardwareMap) {
 
@@ -25,16 +29,36 @@ public class Shooter {
 
         //shootSpeed = .23;
         shootSpeed = .531;
+        shootSpeedNoEncoder = .1215;
+        shootSpeedNoEncoderHigher = .17;
+        usingEncoders = true;
     }
 
     public void turnOn() {
+        usingEncoders = true;
+        runUsingEncoders();
         leftMotor.setPower(shootSpeed);
         rightMotor.setPower(-shootSpeed);
+    }
+
+    public void turnOnNoEncoder() {
+        runWithoutEncoders();
+        usingEncoders = false;
+        leftMotor.setPower(shootSpeedNoEncoder);
+        rightMotor.setPower(-shootSpeedNoEncoder);
+    }
+
+    public void turnOnNoEncoderHigher() {
+        runWithoutEncoders();
+        usingEncoders = false;
+        leftMotor.setPower(shootSpeedNoEncoderHigher);
+        rightMotor.setPower(-shootSpeedNoEncoderHigher);
     }
 
     public void turnOff() {
         leftMotor.setPower(0);
         rightMotor.setPower(0);
+        usingEncoders = true;
     }
 
     public void setPower(double power) {
