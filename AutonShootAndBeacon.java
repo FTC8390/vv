@@ -15,6 +15,8 @@ public class AutonShootAndBeacon extends AutonBeacon {
     }
 
 
+    int waitTimeDefense;
+
     public void runOpMode() {
 
         boolean shootTwo = true;
@@ -45,6 +47,7 @@ public class AutonShootAndBeacon extends AutonBeacon {
             telemetry.update();
         }
 
+        waitTimeDefense = 8000;
         while(!opModeIsActive())
         {
             if(gamepad1.dpad_up)
@@ -56,9 +59,32 @@ public class AutonShootAndBeacon extends AutonBeacon {
                 shootTwo = false;
             }
 
-            telemetry.addData("Use Dpad Up and Down; ShootTwo = ", shootTwo );
+
+
+            if(gamepad1.y)
+            {
+                if(waitTimeDefense < 25001)
+                    waitTimeDefense += 8;
+                else
+                    waitTimeDefense = 25000;
+            }
+            if(gamepad1.a)
+            {
+                if(waitTimeDefense > 7999)
+                    waitTimeDefense -= 8;
+                else
+                    waitTimeDefense = 8000;
+            }
+
+            telemetry.addData("Use Dpad Up and Down; ShootTwo = ", shootTwo);
+            telemetry.addData("Use Y and A; WaitTimeDefense = ", waitTimeDefense );
+            telemetry.addLine("press gamepad1 right stick in to verify");
             telemetry.update();
+            sleep(10);
         }
+
+
+
 
 
         waitForStart();

@@ -83,22 +83,22 @@ public class ChangeAutonDistances extends OpMode {
 
         if(gamepad2.right_trigger > .75)
         {
-            autonFile.shooterForwardTime -= .05;
+            autonFile.shooterForwardTime -= .5;
         }
         if(gamepad2.right_bumper)
         {
-            autonFile.shooterForwardTime += .05;
+            autonFile.shooterForwardTime += .5;
         }
 
 
 
         if(gamepad2.left_bumper)
         {
-            autonFile.shooterForwardAfterShoot += .05;
+            autonFile.shooterForwardAfterShoot += .5;
         }
         if(gamepad2.left_trigger > .75)
         {
-            autonFile.shooterForwardAfterShoot -= .05;
+            autonFile.shooterForwardAfterShoot -= .5;
         }
 
     }

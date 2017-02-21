@@ -14,7 +14,7 @@ public class Sweeper {
     public void init(HardwareMap hardwareMap) {
         motor = hardwareMap.dcMotor.get("sweeper");
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        sweepSpeed = .3;
+        sweepSpeed = .5;
     }
 
     public void sweepIn()
