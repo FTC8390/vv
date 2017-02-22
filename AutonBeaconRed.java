@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import for_camera_opmodes.LinearOpModeCamera;
 
 @Autonomous(name = "RedBeacon")  // @Autonomous(...) is the other common choice
+@Disabled
 public class AutonBeaconRed extends AutonBeacon {
 
     public AutonBeaconRed()

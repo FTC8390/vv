@@ -78,7 +78,7 @@ public class AutonShootAndBeacon extends AutonBeacon {
 
             telemetry.addData("Use Dpad Up and Down; ShootTwo = ", shootTwo);
             telemetry.addData("Use Y and A; WaitTimeDefense = ", waitTimeDefense );
-            telemetry.addLine("press gamepad1 right stick in to verify");
+            //telemetry.addLine("press gamepad1 right stick in to verify");
             telemetry.update();
             sleep(10);
         }

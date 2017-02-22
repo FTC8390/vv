@@ -70,11 +70,13 @@ public class ChangeAutonDistances extends OpMode {
 
         if(gamepad2.x)
         {
-            autonFile.shooterWait -= .05;
+            autonFile.shooterWait -= 2.5;
+            if(autonFile.shooterWait <= 0)
+                autonFile.shooterWait = 0.0;
         }
         if(gamepad2.b)
         {
-            autonFile.shooterWait += .05;
+            autonFile.shooterWait += 2.5;
         }
 
 
@@ -83,22 +85,26 @@ public class ChangeAutonDistances extends OpMode {
 
         if(gamepad2.right_trigger > .75)
         {
-            autonFile.shooterForwardTime -= .5;
+            autonFile.shooterForwardTime -= 2.5;
+            if(autonFile.shooterForwardTime <=0)
+                autonFile.shooterForwardTime = 0.0;
         }
         if(gamepad2.right_bumper)
         {
-            autonFile.shooterForwardTime += .5;
+            autonFile.shooterForwardTime += 2.5;
         }
 
 
 
         if(gamepad2.left_bumper)
         {
-            autonFile.shooterForwardAfterShoot += .5;
+            autonFile.shooterForwardAfterShoot += 2.5;
+            if(autonFile.shooterForwardAfterShoot <= 0)
+                autonFile.shooterForwardAfterShoot = 0.0;
         }
         if(gamepad2.left_trigger > .75)
         {
-            autonFile.shooterForwardAfterShoot -= .5;
+            autonFile.shooterForwardAfterShoot -= 2.5;
         }
 
     }
